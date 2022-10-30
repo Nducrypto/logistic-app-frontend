@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import Navbar from "./Components/Navbar/Navbar";
+import Bookings from "./Components/Bookings/Bookings";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import Home from "./Components/Home/Home";
+import Footer from "./Components/Footer/Footer";
+import Subscribe from "./Components/Subscribe/Subscribe";
+import PassengerInfo from "./Components/PassengerInfo/PassengerInfo";
+import Auth from "./Components/Auth/Auth";
+import BookingHistory from "./Components/BookingHistory/BookingHistory";
 
-function App() {
+const App = () => {
+  const user = JSON.parse(localStorage.getItem("profile"));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Navbar />
+      <Switch>
+        {/* <Route path="/" exact component={() => <Redirect to="/ho" />} /> */}
+        <Route path="/" exact component={Home} />
+        <Route path="/bookinghistory" exact component={BookingHistory} />
+
+        <Route path="/passenger" exact component={PassengerInfo} />
+
+        <Route path="/select-bus" exact component={Bookings} />
+        {/* <Route path="/:id" exact component={Detail} /> */}
+        <Route path="/auth" exact component={Auth} />
+      </Switch>
+      <Subscribe />
+      <Footer />
+    </BrowserRouter>
   );
-}
+};
 
 export default App;

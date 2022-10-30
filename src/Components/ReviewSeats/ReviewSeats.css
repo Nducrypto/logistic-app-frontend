@@ -1,0 +1,48 @@
+.reserve {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.418);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .rContainer {
+    background-color: darkred;
+    color: white;
+    padding: 1rem 0 0 4rem;
+    height: 75%;
+    display: grid;
+  grid-template-columns: 1fr 1fr 1fr ;
+
+    position: relative;
+  }
+  
+  
+  
+ 
+  .rButton {
+    border: none;
+    padding: 10px 20px;
+    background-color: #0071c2;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    width: 10rem;
+    height: 3rem;
+    margin-top: -4rem;
+  }
+
+
+
+  @media screen and (max-width: 650px) {
+    .rContainer {
+      height: 50%;
+    }
+     
+   
+}

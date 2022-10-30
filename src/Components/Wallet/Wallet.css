@@ -1,0 +1,66 @@
+.image{
+    height: 65%;
+    width: 80%;
+   border-radius : 1rem;
+    transform: rotate(20deg);
+   margin-top : 5.8rem;
+   box-shadow : 2rem 2rem 1.2rem 0.4rem green;
+    margin-bottom: 7rem;
+}
+
+span{
+    color: red;
+}
+
+@media screen and (max-width: 850px) {
+    .image {
+        height: 50%;
+        width: 80%;
+       border-radius : 1rem;
+        transform: rotate(45deg);
+       margin-top : 7rem;
+       box-shadow : 1rem 1.3rem 1.2rem 0.4rem green;
+
+       margin-left: 2.5rem;
+    }  
+   
+}
+
+
+
+@media screen and (max-width: 600px) {
+    .image {
+        height: 50%;
+        width: 80%;
+       border-radius : 1rem;
+        transform: rotate(25deg);
+       margin-top : -1rem;
+       box-shadow : 1rem 1.3rem 1.2rem 0.4rem blue;
+       margin-left: 2.5rem;
+    }  
+   
+}
+@media screen and (max-width: 420px) {
+    .image {
+        height: 50%;
+        width: 80%;
+       border-radius : 1rem;
+        transform: rotate(50deg);
+       margin-top : 1rem;
+       box-shadow : 1rem 1.3rem 1.2rem 0.4rem red;
+       margin-left: 2.8rem;
+    }  
+   
+}
+@media screen and (max-width: 390px) {
+    .image {
+        height: 50%;
+        width: 80%;
+       border-radius : 1rem;
+        transform: rotate(50deg);
+       margin-top : 7rem;
+       box-shadow : 1rem 1.3rem 1.2rem 0.4rem orange;
+       margin-left: 2.8rem;
+    }  
+   
+}

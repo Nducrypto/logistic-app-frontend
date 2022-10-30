@@ -1,0 +1,48 @@
+/* ======== HEADER SOCIALS styling===== */
+.ndu{
+    display: flex;
+    justify-content: space-between;
+}
+
+/* .hey{
+    background-color: midnightblue;
+    background-color: midnightblue;
+    color: rgb(255, 255, 255);
+} */
+
+/* DIS MEDIA QUERRY IS FOR IPAD DEVICES */
+/* @media screen and (max-width: 1110px){
+    .ndu{
+        display: flex;
+        flex-direction: column;
+    }
+    
+    
+} */
+
+/* @media screen and (max-width: 910px){
+    .ndu{
+        display: flex;
+        flex-direction: column;
+    }
+
+} */
+
+
+@media screen and (max-width: 810px){
+    .ndu{
+        display: flex;
+        flex-direction: row;
+    }
+    
+}
+
+
+@media screen and (max-width: 375px){
+   
+}
+
+
+
+
+
