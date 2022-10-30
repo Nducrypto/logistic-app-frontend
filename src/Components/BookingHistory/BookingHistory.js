@@ -6,7 +6,7 @@ import useFetch from "../../Hooks/useFetch";
 import { Container } from "@mui/system";
 
 const BookingHistory = () => {
-  const { data } = useFetch("/passengerinfo");
+  const { data } = useFetch("/passenger");
   const user = JSON.parse(localStorage.getItem("profile"));
 
   const creator = user?.result._id;

@@ -16,7 +16,6 @@ const App = () => {
     <BrowserRouter>
       <Navbar />
       <Switch>
-        {/* <Route path="/" exact component={() => <Redirect to="/ho" />} /> */}
         <Route path="/" exact component={Home} />
         <Route path="/bookinghistory" exact component={BookingHistory} />
 

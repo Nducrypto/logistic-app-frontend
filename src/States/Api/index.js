@@ -20,8 +20,7 @@ export const fetchBookings = () => API.get("/page");
 export const fetchBookingById = (id) => API.get(`/page/${id}`);
 
 // export const createBooking = (newBooking) => API.post("/page", newBooking);
-export const createBooking = (newBooking) =>
-  API.post("/passengerinfo", newBooking);
+export const createBooking = (newBooking) => API.post("/passenger", newBooking);
 
 export const deleteBooking = (id) => API.delete(`/page/${id}`);
 
