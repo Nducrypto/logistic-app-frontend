@@ -81,11 +81,13 @@ const ReviewSeats = ({
               onClick={(t) => {
                 setForm(initialState);
                 navigate("/passenger", {
-                  selectedSeats,
-                  departureTerminal,
-                  date,
-                  arrivalTerminal,
-                  adults,
+                  state: {
+                    selectedSeats,
+                    departureTerminal,
+                    date,
+                    arrivalTerminal,
+                    adults,
+                  },
                 });
               }}
               className="rButton"

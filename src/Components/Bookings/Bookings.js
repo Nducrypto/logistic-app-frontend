@@ -21,6 +21,7 @@ const Expertise = () => {
     useStateContext();
 
   const location = useLocation();
+  console.log(location);
   const navigate = useNavigate();
   const departureTerminal = location.state.departureTerminal;
   const arrivalTerminal = location.state.arrivalTerminal;

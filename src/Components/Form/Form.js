@@ -43,10 +43,12 @@ const Form = () => {
   //  HANDLE SUBMIT
   const handleSubmit = () => {
     navigate(`/select-bus`, {
-      departureTerminal,
-      arrivalTerminal,
-      adults,
-      date,
+      state: {
+        departureTerminal,
+        arrivalTerminal,
+        adults,
+        date,
+      },
     });
   };
 
