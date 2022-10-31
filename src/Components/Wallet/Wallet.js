@@ -66,6 +66,7 @@ const Enjoy = () => {
           }}
         >
           <img
+            alt=""
             src={budget}
             style={{
               height: "100%",

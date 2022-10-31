@@ -13,7 +13,7 @@ import {
 import { places, number } from "../../Objects/Constants/Categories";
 import { useStateContext } from "../../States/Contexts/ContextProvider";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { useAuthContext } from "../../States/Contexts/AuthContext";
 // import { createBooking } from "../../States/Action/BookingActions";
 

@@ -21,7 +21,7 @@ const PassengerInfo = () => {
   const { user } = useAuthContext();
   const creator = user?.result._id;
 
-  const { API, data, loading } = useFetch(
+  const { API, data } = useFetch(
     `/page?departureTerminal=${departureTerminal}&arrivalTerminal=${arrivalTerminal}`
   );
   const dispatch = useDispatch();
@@ -38,7 +38,7 @@ const PassengerInfo = () => {
       })
     );
   };
-  console.log(handleSubmit);
+
   const handleClick = async () => {
     try {
       await Promise.all(
