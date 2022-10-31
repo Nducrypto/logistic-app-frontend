@@ -13,7 +13,7 @@ const API = axios.create({ baseURL: "https://logistic-api.onrender.com/api" });
 //   return req;
 // });
 
-export const fetchBookings = () => API.get("/page");
+export const fetchBookings = () => API.get("/passenger");
 
 export const fetchBookingById = (id) => API.get(`/page/${id}`);
 

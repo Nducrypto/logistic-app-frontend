@@ -5,6 +5,11 @@ const bookings = (
   action
 ) => {
   switch (action.type) {
+    case "FETCH_ALL":
+      return {
+        ...bookings,
+        booking: action.payload,
+      };
     case "CREATE":
       return {
         ...bookings,

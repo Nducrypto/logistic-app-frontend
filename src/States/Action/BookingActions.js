@@ -3,7 +3,7 @@ import * as api from "../Api/index.js";
 export const getBookings = () => async (dispatch) => {
   try {
     const { data } = await api.fetchBookings();
-
+    console.log(data);
     dispatch({ type: "FETCH_ALL", payload: data });
   } catch (error) {
     console.log(error);
