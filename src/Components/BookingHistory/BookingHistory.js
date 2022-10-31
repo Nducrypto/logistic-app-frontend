@@ -1,21 +1,19 @@
-import { Grid, Card, Typography, Paper } from "@mui/material";
+import { Grid, Paper } from "@mui/material";
 import React from "react";
 import moment from "moment";
 
 import useFetch from "../../Hooks/useFetch";
 import { Container } from "@mui/system";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 const BookingHistory = () => {
-  const { booking } = useSelector((state) => state.bookings);
-  // const { data } = useFetch("/passenger");
+  // const { booking } = useSelector((state) => state.bookings);
+  const { data } = useFetch("/passenger");
   const user = JSON.parse(localStorage.getItem("profile"));
 
   const creator = user?.result._id;
 
-  const filter = booking.filter((p) =>
-    creator ? p.creator === creator : null
-  );
+  const filter = data.filter((p) => (creator ? p.creator === creator : null));
 
   return (
     <div>

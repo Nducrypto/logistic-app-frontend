@@ -1,5 +1,5 @@
-import { AppBar, Avatar, Button, Typography } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import { AppBar, Button } from "@mui/material";
+import React, { useState } from "react";
 import "./Navbar.css";
 import { useHistory } from "react-router-dom";
 
@@ -33,7 +33,7 @@ const Navbar = () => {
               </a>
             )}
 
-            <a href="/"></a>
+            {/* <a href="/"></a> */}
             <a
               href="/"
               style={{

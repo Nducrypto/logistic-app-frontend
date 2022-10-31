@@ -77,7 +77,7 @@ const Earnin = () => {
         <Grid item xs={12} sm={12} md={6}>
           <Typography
             sx={{
-              marginTop: { xs: "2rem", md: "-0.1rem", md: "-0.1rem" },
+              marginTop: { xs: "2rem", md: "-0.1rem", sm: "-0.1rem" },
               height: { md: "30rem", sm: "30rem" },
             }}
           >
@@ -87,6 +87,7 @@ const Earnin = () => {
                 height: "100%",
                 width: "100%",
               }}
+              alt=""
             />
           </Typography>
         </Grid>

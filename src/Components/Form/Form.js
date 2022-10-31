@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   Grid,
   TextField,
@@ -15,7 +15,7 @@ import { useStateContext } from "../../States/Contexts/ContextProvider";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useAuthContext } from "../../States/Contexts/AuthContext";
-import { createBooking } from "../../States/Action/BookingActions";
+// import { createBooking } from "../../States/Action/BookingActions";
 
 const Form = () => {
   const {
@@ -30,13 +30,13 @@ const Form = () => {
 
     adults,
     setAdults,
-    price,
-    setPrice,
-    seats,
-    setSeats,
+    // price,
+    // setPrice,
+    // seats,
+    // setSeats,
   } = useStateContext();
   const { user } = useAuthContext();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const history = useHistory();
 
@@ -326,10 +326,10 @@ const Form = () => {
                   fullWidth
                   onClick={() => {
                     handleSubmit();
-                    setDepartureTerminal("");
-                    setArrivalTerminal("");
-                    setAdults("");
-                    setDate("");
+                    // setDepartureTerminal("");
+                    // setArrivalTerminal("");
+                    // setAdults("");
+                    // setDate("");
                   }}
                   sx={{
                     textTransform: "lowercase",

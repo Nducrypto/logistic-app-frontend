@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import Gallery from "../GallerySlider.js/Gallery";
+// import Gallery from "../GallerySlider.js/Gallery";
 import Heros from "../Hero/Hero";
 import Wallet from "../Wallet/Wallet";
 import Earning from "../Earning/Earning";
@@ -16,7 +16,7 @@ const Home = () => {
   return (
     <div>
       <Heros />
-      <Gallery />
+      {/* <Gallery /> */}
       <Wallet />
       <Earning />
     </div>

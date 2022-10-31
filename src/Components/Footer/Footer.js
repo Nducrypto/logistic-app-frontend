@@ -18,7 +18,7 @@ const Footer = () => {
           <Typography
             sx={{ marginTop: { xs: "7rem", md: "5rem", lg: "-0.4rem" } }}
           >
-            <img src={card} style={{ height: "4rem", width: "4rem" }} />
+            <img alt="" src={card} style={{ height: "4rem", width: "4rem" }} />
           </Typography>
         </Grid>
         <Grid item xs={6} md={6} lg={2} sm={6}>

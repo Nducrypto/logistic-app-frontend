@@ -35,7 +35,6 @@ export const ContextProvider = ({ children }) => {
         setArrivalTerminal,
         adults,
         setAdults,
-        setDate,
         mode,
         setMode,
         booking,

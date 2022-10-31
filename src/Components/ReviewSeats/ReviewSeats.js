@@ -16,16 +16,8 @@ const ReviewSeats = ({
   adults,
 }) => {
   const history = useHistory();
-  const {
-    initialState,
-    form,
-    setForm,
-    open,
-    setOpen,
-    error,
-    setError,
-    selectedSeats,
-  } = useStateContext();
+  const { initialState, setForm, setOpen, error, setError, selectedSeats } =
+    useStateContext();
 
   return (
     <AppBar sx={{ color: "black" }}>

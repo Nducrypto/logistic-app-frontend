@@ -125,7 +125,7 @@ const Enjoy = () => {
             margingBottom: "-6rem",
           }}
         >
-          <img src={card} className="image" />
+          <img alt="" src={card} className="image" />
         </Grid>
       </Grid>
     </div>

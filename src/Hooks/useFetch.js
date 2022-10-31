@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 // const API = axios.create({ baseURL: "http://localhost:5000/api" });
 const API = axios.create({ baseURL: "https://logistic-api.onrender.com/api" });

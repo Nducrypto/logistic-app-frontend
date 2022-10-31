@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Button,
-  Card,
-  Grid,
-  Paper,
-  Typography,
-  CardContent,
-  TextField,
-} from "@mui/material";
+import { Button, Grid, Paper, Typography, TextField } from "@mui/material";
 
 const Subscribe = () => {
   return (

@@ -6,29 +6,19 @@ import {
   CardMedia,
   CardContent,
   CircularProgress,
-  TextField,
-  InputLabel,
   Paper,
 } from "@mui/material";
 import { useLocation, useHistory } from "react-router-dom";
-import React, { useState } from "react";
+import React from "react";
 import { useStateContext } from "../../States/Contexts/ContextProvider.js";
-import budget from "../../assets/budget.png";
 import useFetch from "../../Hooks/useFetch.js";
 import moment from "moment";
 import gigbus from "../../assets/gigbus.jpg";
 import ReviewSeats from "../ReviewSeats/ReviewSeats";
 
 const Expertise = () => {
-  const {
-    open,
-    setOpen,
-    setError,
-    form,
-    setForm,
-    selectedSeats,
-    setSelectedSeats,
-  } = useStateContext();
+  const { open, setOpen, setError, selectedSeats, setSelectedSeats } =
+    useStateContext();
 
   const location = useLocation();
   const history = useHistory();
@@ -36,7 +26,7 @@ const Expertise = () => {
   const arrivalTerminal = location.state.arrivalTerminal;
   const adults = location.state.adults;
   const date = location.state.date;
-  const { API, data, loading } = useFetch(
+  const { data, loading } = useFetch(
     `/page?departureTerminal=${departureTerminal}&arrivalTerminal=${arrivalTerminal}`
   );
 
@@ -169,7 +159,7 @@ const Expertise = () => {
                       backgroundColor: "red",
                       color: "white",
                     }}
-                    onClick={() => setOpen(!open)}
+                    onClick={() => setOpen(true)}
                   >
                     view seats
                   </Button>

@@ -1,23 +1,21 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Navbar from "./Components/Navbar/Navbar";
 import Bookings from "./Components/Bookings/Bookings";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Home from "./Components/Home/Home";
 import Footer from "./Components/Footer/Footer";
 import Subscribe from "./Components/Subscribe/Subscribe";
 import PassengerInfo from "./Components/PassengerInfo/PassengerInfo";
 import Auth from "./Components/Auth/Auth";
 import BookingHistory from "./Components/BookingHistory/BookingHistory";
-import { getBookings } from "./States/Action/BookingActions";
-import { useDispatch } from "react-redux";
+// import { getBookings } from "./States/Action/BookingActions";
+// import { useDispatch } from "react-redux";
 
 const App = () => {
-  const user = JSON.parse(localStorage.getItem("profile"));
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getBookings());
-  }, [dispatch]);
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(getBookings());
+  // }, [dispatch]);
 
   return (
     <BrowserRouter>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import {
   Avatar,
@@ -7,7 +7,6 @@ import {
   Typography,
   Container,
   Paper,
-  InputAdornment,
   createTheme,
 } from "@mui/material";
 import { useHistory } from "react-router-dom";
@@ -151,7 +150,6 @@ const SignUp = () => {
             variant="contained"
             color="primary"
             style={{
-              marginTop: "0.5rem",
               margin: theme.spacing(3, 0, 2),
               marginTop: theme.spacing(3),
             }}
