@@ -1,7 +1,7 @@
 import React from "react";
 import Navbar from "./Components/Navbar/Navbar";
 import Bookings from "./Components/Bookings/Bookings";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./Components/Home/Home";
 import Footer from "./Components/Footer/Footer";
 import Subscribe from "./Components/Subscribe/Subscribe";
@@ -20,16 +20,16 @@ const App = () => {
   return (
     <BrowserRouter>
       <Navbar />
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/bookinghistory" exact component={BookingHistory} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/bookinghistory" element={<BookingHistory />} />
 
-        <Route path="/passenger" exact component={PassengerInfo} />
+        <Route path="/passenger" element={<PassengerInfo />} />
 
-        <Route path="/select-bus" exact component={Bookings} />
+        <Route path="/select-bus" element={<Bookings />} />
         {/* <Route path="/:id" exact component={Detail} /> */}
-        <Route path="/auth" exact component={Auth} />
-      </Switch>
+        <Route path="/auth" element={<Auth />} />
+      </Routes>
       <Subscribe />
       <Footer />
     </BrowserRouter>

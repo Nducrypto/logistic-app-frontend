@@ -1,6 +1,6 @@
 import { Button, Grid, Typography, TextField, Paper } from "@mui/material";
 import React from "react";
-import { useLocation, useHistory } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import useFetch from "../../Hooks/useFetch";
 import { useStateContext } from "../../States/Contexts/ContextProvider";
 import { createBooking } from "../../States/Action/BookingActions";
@@ -17,7 +17,7 @@ const PassengerInfo = () => {
   const departureTerminal = location.state.departureTerminal;
   const arrivalTerminal = location.state.arrivalTerminal;
 
-  const history = useHistory();
+  const navigate = useNavigate();
   const { user } = useAuthContext();
   const creator = user?.result._id;
 
@@ -301,7 +301,7 @@ const PassengerInfo = () => {
                 onClick={() => {
                   handleClick();
                   handleSubmit();
-                  history.push("/bookinghistory");
+                  navigate("/bookinghistory");
                 }}
               >
                 pay

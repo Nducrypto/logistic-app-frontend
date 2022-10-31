@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import { places, number } from "../../Objects/Constants/Categories";
 import { useStateContext } from "../../States/Contexts/ContextProvider";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // import { useDispatch } from "react-redux";
 import { useAuthContext } from "../../States/Contexts/AuthContext";
 // import { createBooking } from "../../States/Action/BookingActions";
@@ -38,11 +38,11 @@ const Form = () => {
   const { user } = useAuthContext();
   // const dispatch = useDispatch();
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   //  HANDLE SUBMIT
   const handleSubmit = () => {
-    history.push(`/select-bus`, {
+    navigate(`/select-bus`, {
       departureTerminal,
       arrivalTerminal,
       adults,
@@ -348,7 +348,7 @@ const Form = () => {
                     marginTop: ".7rem",
                     padding: "-2rem",
                   }}
-                  onClick={() => history.push("/auth")}
+                  onClick={() => navigate("/auth")}
                 >
                   please sign in
                 </Button>

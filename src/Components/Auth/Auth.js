@@ -9,7 +9,7 @@ import {
   Paper,
   createTheme,
 } from "@mui/material";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
 import InputAuth from "./InputAuth";
@@ -28,7 +28,7 @@ const SignUp = () => {
   const [formAuth, setFormAuth] = useState(initialState);
   const [isSignup, setIsSignup] = useState(false);
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -48,9 +48,9 @@ const SignUp = () => {
     e.preventDefault();
 
     if (isSignup) {
-      dispatch(register(formAuth, history));
+      dispatch(register(formAuth, navigate));
     } else {
-      dispatch(login(formAuth, history));
+      dispatch(login(formAuth, navigate));
     }
   };
 

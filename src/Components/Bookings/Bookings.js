@@ -8,7 +8,7 @@ import {
   CircularProgress,
   Paper,
 } from "@mui/material";
-import { useLocation, useHistory } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import React from "react";
 import { useStateContext } from "../../States/Contexts/ContextProvider.js";
 import useFetch from "../../Hooks/useFetch.js";
@@ -21,7 +21,7 @@ const Expertise = () => {
     useStateContext();
 
   const location = useLocation();
-  const history = useHistory();
+  const navigate = useNavigate();
   const departureTerminal = location.state.departureTerminal;
   const arrivalTerminal = location.state.arrivalTerminal;
   const adults = location.state.adults;
@@ -134,7 +134,7 @@ const Expertise = () => {
                     {moment(date).format("dddd, MMMM Do YYYY")} : 07:45am
                   </Typography>
                   <Typography paragraph>adult {adults}</Typography>
-                  <Button onClick={() => history.push(`/${p._id}`)}>
+                  <Button onClick={() => navigate(`/${p._id}`)}>
                     View more about your travel
                   </Button>
                 </CardContent>

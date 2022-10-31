@@ -3,7 +3,7 @@ import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import "./ReviewSeats.css";
 import Error from "../Error/Error";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useStateContext } from "../../States/Contexts/ContextProvider";
 
 const ReviewSeats = ({
@@ -15,7 +15,7 @@ const ReviewSeats = ({
   arrivalTerminal,
   adults,
 }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { initialState, setForm, setOpen, error, setError, selectedSeats } =
     useStateContext();
 
@@ -80,7 +80,7 @@ const ReviewSeats = ({
               }}
               onClick={(t) => {
                 setForm(initialState);
-                history.push("/passenger", {
+                navigate("/passenger", {
                   selectedSeats,
                   departureTerminal,
                   date,

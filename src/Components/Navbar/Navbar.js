@@ -1,14 +1,14 @@
 import { AppBar, Button } from "@mui/material";
 import React, { useState } from "react";
 import "./Navbar.css";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { useAuthContext } from "../../States/Contexts/AuthContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { dispatch, user } = useAuthContext();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const logout = () => {
     dispatch({ type: "LOGOUT" });
@@ -58,7 +58,7 @@ const Navbar = () => {
                 onClick={() => {
                   setIsOpen(false);
                   logout();
-                  history.push("/");
+                  navigate("/");
                 }}
                 variant="contained"
                 sx={{
@@ -81,7 +81,7 @@ const Navbar = () => {
                 textTransform: "lowercase",
               }}
               onClick={() => {
-                history.push("/auth");
+                navigate("/auth");
                 setIsOpen(false);
               }}
             >
