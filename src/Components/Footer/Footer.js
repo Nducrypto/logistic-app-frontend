@@ -12,7 +12,7 @@ const Footer = () => {
         container
         justifyContent="center"
         alignItems="center"
-        sx={{ marginBottom: "5rem" }}
+        sx={{ marginBottom: "5rem", padding: "0 0 0 3rem" }}
       >
         <Grid item xs={12} md={12} sm={12} lg={3}>
           <Typography
@@ -23,71 +23,93 @@ const Footer = () => {
         </Grid>
         <Grid item xs={6} md={6} lg={2} sm={6}>
           <Typography
-            paragraph
             sx={{
-              marginTop: { xs: "-5rem", md: "-0.5rem" },
+              marginTop: { xs: "-1.3rem", md: "-0.5rem" },
               fontWeight: "1000",
             }}
           >
             Company
           </Typography>
-          <Typography paragraph sx={{ fontSize: "0.9rem" }}>
-            About Us
-          </Typography>
+          <Typography sx={{ fontSize: "0.9rem" }}>About Us</Typography>
         </Grid>
         <Grid item xs={6} md={6} lg={2} sm={6}>
           <Typography
-            paragraph
-            sx={{ marginTop: { md: "6.3rem", xs: "2rem" }, fontWeight: "1000" }}
+            sx={{ marginTop: { md: "3rem", xs: "2rem" }, fontWeight: "1000" }}
           >
             Experience
           </Typography>
-          <Typography paragraph sx={{ fontSize: "0.9rem" }}>
-            Contact Us
-          </Typography>
-          <Typography paragraph sx={{ fontSize: "0.9rem" }}>
-            FAQs Us
-          </Typography>
-          <Typography paragraph sx={{ fontSize: "0.9rem" }}>
-            Find a Terminal
-          </Typography>
-          <Typography paragraph sx={{ fontSize: "0.9rem" }}>
-            Blogs
-          </Typography>
+          <Typography sx={{ fontSize: "0.9rem" }}>Contact Us</Typography>
+          <Typography sx={{ fontSize: "0.9rem" }}>FAQs Us</Typography>
+          <Typography sx={{ fontSize: "0.9rem" }}>Find a Terminal</Typography>
+          <Typography sx={{ fontSize: "0.9rem" }}>Blogs</Typography>
         </Grid>
         <Grid item xs={6} md={6} lg={2} sm={6}>
           <Typography
-            paragraph
-            sx={{ marginTop: { xs: "2rem" }, fontWeight: "1000" }}
+            sx={{
+              marginTop: { md: "-0.2rem", xs: "2rem" },
+              fontWeight: "1000",
+            }}
           >
             Terms
           </Typography>
-          <Typography paragraph sx={{ fontSize: "0.9rem" }}>
+          <Typography sx={{ fontSize: "0.9rem" }}>
             <a href="/" style={{ textDecoration: "none" }}>
               Privacy Policy
             </a>
           </Typography>
-          <Typography paragraph>
+          <Typography>
             <a href="/" style={{ textDecoration: "none" }}>
               Terms & Conditions
             </a>
           </Typography>
-          <Typography paragraph></Typography>
         </Grid>
-        <Grid item xs={6} md={6} lg={2} sm={6}>
+        <Grid
+          item
+          xs={6}
+          md={6}
+          lg={2}
+          sm={6}
+          sx={{
+            marginTop: { xs: "-0.5rem", lg: "2rem", md: "2rem", sm: "1rem" },
+          }}
+        >
           <Typography
-            paragraph
             sx={{
-              marginTop: { xs: "-3.1rem", md: "-1.5rem" },
+              marginTop: { xs: "1rem", md: "-3.3rem", sm: "-3.5" },
               fontWeight: "1000",
             }}
           >
             Connect with us
           </Typography>
-          <div style={{ display: "flex", flexDirection: "row", gap: "3rem" }}>
-            <TwitterIcon />
-            <FacebookIcon />
-            <InstagramIcon />
+          <div
+            style={{
+              marginTop: "0.5rem",
+              display: "flex",
+              flexDirection: "row",
+              gap: "1.4rem",
+            }}
+          >
+            <a
+              href="https://twitter.com/agbozion"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {<TwitterIcon />}
+            </a>
+            <a
+              href="https://facebook.com/AgboNduu"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {<FacebookIcon />}
+            </a>
+            <a
+              href="https://instagram.com/AgboNduu"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {<InstagramIcon />}
+            </a>
           </div>
         </Grid>
       </Grid>

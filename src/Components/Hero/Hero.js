@@ -2,19 +2,20 @@ import React from "react";
 import { Grid, Typography } from "@mui/material";
 import Form from "../Form/Form";
 import { useStateContext } from "../../States/Contexts/ContextProvider";
+import "./Hero.css";
 
 const Heros = () => {
   const { mode } = useStateContext();
 
   return (
-    <div>
+    <div className="hero-container">
       <Grid
         container
         alignItems="center"
         justifyContent="center"
         sx={{
-          marginTop: { xs: "5.5rem", md: "2rem" },
-          backgroundColor: "black",
+          marginTop: { xs: "3.5rem", md: "2rem" },
+          marginBottom: { xs: "3rem", md: "0.5" },
         }}
       >
         <Grid
@@ -23,7 +24,7 @@ const Heros = () => {
           sm={6}
           sx={{
             marginTop: { xs: "3rem", md: "2rem" },
-            marginBottom: { xs: "4rem", md: "0.5" },
+            marginBottom: { xs: "3rem", md: "0.5" },
           }}
         >
           <Typography
@@ -42,7 +43,7 @@ const Heros = () => {
             }}
           >
             The modern way to <br /> commute across cities
-            <Typography variant="body2" sx={{ marginTop: "1rem" }}>
+            <Typography sx={{ marginTop: "1rem", fontSize: "1rem" }}>
               GIGM is an African technology powered company, providing seamless
               mobility services to commuters across Africa
             </Typography>
@@ -55,7 +56,7 @@ const Heros = () => {
           xs={11}
           sm={6}
           sx={{
-            marginBottom: { xs: "4rem", md: "0.5" },
+            marginBottom: { xs: "0.5rem", md: "0.5" },
           }}
         >
           <Form />

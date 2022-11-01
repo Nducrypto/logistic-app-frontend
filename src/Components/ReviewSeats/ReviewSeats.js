@@ -1,10 +1,11 @@
-import { AppBar, Button, Card, CardContent, Typography } from "@mui/material";
+import { AppBar, Button, Card, CardContent } from "@mui/material";
 import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import "./ReviewSeats.css";
 import Error from "../Error/Error";
 import { useNavigate } from "react-router-dom";
 import { useStateContext } from "../../States/Contexts/ContextProvider";
+import InputReview from "./InputReview";
 
 const ReviewSeats = ({
   p,
@@ -42,23 +43,66 @@ const ReviewSeats = ({
           <CardContent sx={{ marginTop: "1.6rem" }}>driver</CardContent>
 
           <>
-            {p.seatNumbers.map((t) => (
-              <div key={t._id}>
-                <Typography sx={{ marginTop: "1rem" }}>
-                  {t.number}
-                  <input
-                    type="checkbox"
-                    value={t.number}
-                    onChange={handleSelect}
-                    disabled={alreadyBooked(t)}
-                    style={{
-                      width: "3rem",
-                      height: "2rem",
-                    }}
-                  />
-                </Typography>
-              </div>
-            ))}
+            <InputReview
+              title={p.seatNumbers[0].number}
+              value={p.seatNumbers[0].number}
+              onChange={handleSelect}
+              disabled={alreadyBooked(p.seatNumbers[0])}
+            />
+            <InputReview
+              title={p.seatNumbers[1].number}
+              value={p.seatNumbers[1].number}
+              onChange={handleSelect}
+              disabled={alreadyBooked(p.seatNumbers[1])}
+            />
+            <InputReview
+              title={p.seatNumbers[2].number}
+              value={p.seatNumbers[2].number}
+              onChange={handleSelect}
+              disabled={alreadyBooked(p.seatNumbers[2])}
+            />
+            <InputReview
+              title={p.seatNumbers[2].number}
+              value={p.seatNumbers[3].number}
+              onChange={handleSelect}
+              disabled={alreadyBooked(p.seatNumbers[3])}
+            />
+            <InputReview
+              title={p.seatNumbers[4].number}
+              value={p.seatNumbers[4].number}
+              onChange={handleSelect}
+              disabled={alreadyBooked(p.seatNumbers[4])}
+            />
+            <InputReview
+              title={p.seatNumbers[5].number}
+              value={p.seatNumbers[5].number}
+              onChange={handleSelect}
+              disabled={alreadyBooked(p.seatNumbers[5])}
+            />
+            <InputReview
+              title={p.seatNumbers[6].number}
+              value={p.seatNumbers[6].number}
+              onChange={handleSelect}
+              disabled={alreadyBooked(p.seatNumbers[6])}
+            />
+            <InputReview
+              title={p.seatNumbers[7].number}
+              value={p.seatNumbers[7].number}
+              onChange={handleSelect}
+              disabled={alreadyBooked(p.seatNumbers[7])}
+            />
+            <InputReview
+              title={p.seatNumbers[8].number}
+              value={p.seatNumbers[8].number}
+              onChange={handleSelect}
+              disabled={alreadyBooked(p.seatNumbers[8])}
+            />
+            <InputReview
+              title={p.seatNumbers[9].number}
+              value={p.seatNumbers[9].number}
+              onChange={handleSelect}
+              disabled={alreadyBooked(p.seatNumbers[9])}
+            />
           </>
           <div>
             <Button

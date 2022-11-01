@@ -284,7 +284,7 @@ const PassengerInfo = () => {
               </div>
             ))}
 
-            <div style={{ padding: "0rem 0rem 0rem 6rem", marginTop: "4rem" }}>
+            <div style={{ marginTop: "2rem" }}>
               <Button
                 disabled={
                   !form.email ||
@@ -296,7 +296,8 @@ const PassengerInfo = () => {
                 }
                 variant="contained"
                 sx={{
-                  width: "70%",
+                  width: "100%",
+                  borderRadius: "0.8rem",
                 }}
                 onClick={() => {
                   handleClick();

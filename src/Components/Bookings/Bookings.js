@@ -150,7 +150,7 @@ const Expertise = () => {
                       marginLeft: { md: "12rem", xs: "5rem" },
                     }}
                   >
-                    ${p.price * adults}
+                    ${p.price}
                   </Typography>
                   <Button
                     sx={{
