@@ -8,6 +8,7 @@ import {
   Container,
   Paper,
   createTheme,
+  CircularProgress,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -32,7 +33,7 @@ const SignUp = () => {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const { error } = useAuthContext();
+  const { error, loading } = useAuthContext();
 
   const handleShowPassword = () => setShowPassword(!showPassword);
 
@@ -92,9 +93,9 @@ const SignUp = () => {
           {isSignup ? "Create a new account " : "Log in to Budget-tracker"}
         </Typography>
         <div>{error && error.message}</div>
+        {loading && <CircularProgress />}
 
         <form
-          onSubmit={handleSubmit}
           style={{
             width: "100%",
             marginTop: theme.spacing(3),
@@ -143,8 +144,8 @@ const SignUp = () => {
               />
             )}
           </Grid>
-
           <Button
+            disabled={loading}
             type="submit"
             fullWidth
             variant="contained"
@@ -153,6 +154,7 @@ const SignUp = () => {
               margin: theme.spacing(3, 0, 2),
               marginTop: theme.spacing(3),
             }}
+            onClick={handleSubmit}
           >
             {isSignup ? "Create my account" : "Log In"}
           </Button>

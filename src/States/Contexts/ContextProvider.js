@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
 import { useSelector } from "react-redux";
+import FormatDate from "../../Utils/FormatDate";
 const stateContext = createContext();
 
 export const ContextProvider = ({ children }) => {
@@ -13,7 +14,7 @@ export const ContextProvider = ({ children }) => {
   const [mode, setMode] = useState("");
   const [departureTerminal, setDepartureTerminal] = useState("");
   const [arrivalTerminal, setArrivalTerminal] = useState("");
-  const [date, setDate] = useState([]);
+  const [date, setDate] = useState(FormatDate(new Date()));
   const [adults, setAdults] = useState(0);
   const [price, setPrice] = useState("");
   const [seats, setSeats] = useState([]);

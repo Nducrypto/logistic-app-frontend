@@ -13,6 +13,7 @@ import {
 import { places, number } from "../../Objects/Constants/Categories";
 import { useStateContext } from "../../States/Contexts/ContextProvider";
 import { useNavigate } from "react-router-dom";
+import FormatDate from "../../Utils/FormatDate";
 // import { useDispatch } from "react-redux";
 import { useAuthContext } from "../../States/Contexts/AuthContext";
 // import { createBooking } from "../../States/Action/BookingActions";
@@ -197,7 +198,7 @@ const Form = () => {
                   <div>
                     <TextField
                       style={{ marginTop: "2rem" }}
-                      onChange={(e) => setDate(e.target.value)}
+                      onChange={(e) => setDate(FormatDate(e.target.value))}
                       value={date}
                       type="date"
                     />
@@ -328,11 +329,12 @@ const Form = () => {
                   fullWidth
                   onClick={() => {
                     handleSubmit();
-                    // setDepartureTerminal("");
-                    // setArrivalTerminal("");
-                    // setAdults("");
-                    // setDate("");
                   }}
+                  disabled={
+                    !departureTerminal || !arrivalTerminal || !adults || !date
+                      ? true
+                      : false
+                  }
                   sx={{
                     textTransform: "lowercase",
                     marginTop: ".5rem",

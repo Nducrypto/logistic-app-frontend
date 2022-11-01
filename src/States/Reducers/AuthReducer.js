@@ -7,6 +7,11 @@ const AuthReducer = (
   action
 ) => {
   switch (action.type) {
+    case "START_LOADING":
+      return { ...authReducer, loading: true };
+    case "END_LOADING":
+      return { ...authReducer, loading: false };
+
     case "LOGIN_START":
       return { ...authReducer, authData: null, loading: false, error: null };
     case "LOGIN_SUCCESS":
@@ -14,7 +19,6 @@ const AuthReducer = (
       return {
         ...authReducer,
         authData: action.payload,
-        loading: true,
         error: null,
       };
     case "LOGIN_FAILURE":
