@@ -3,14 +3,13 @@ import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import useFetch from "../../Hooks/useFetch";
 import { useStateContext } from "../../States/Contexts/ContextProvider";
-import { createBooking } from "../../States/Action/BookingActions";
+import { createPassengerBooking } from "../../States/Action/PassengerActions";
 import { useDispatch } from "react-redux";
 import { useAuthContext } from "../../States/Contexts/AuthContext";
 
 const PassengerInfo = () => {
   const { form, setForm } = useStateContext();
   const location = useLocation();
-  console.log(location);
   const selectedSeats = location.state.selectedSeats;
   const date = location.state.date;
   const adults = location.state.adults;
@@ -27,7 +26,7 @@ const PassengerInfo = () => {
   const dispatch = useDispatch();
   const handleSubmit = () => {
     dispatch(
-      createBooking({
+      createPassengerBooking({
         date,
         adults,
         departureTerminal,

@@ -6,14 +6,12 @@ import { Container } from "@mui/system";
 import { useSelector } from "react-redux";
 
 const BookingHistory = () => {
-  const { booking } = useSelector((state) => state.bookings);
+  const { passenger } = useSelector((state) => state.passengers);
   const user = JSON.parse(localStorage.getItem("profile"));
 
   const creator = user?.result._id;
 
-  const filter = booking.filter((p) =>
-    creator ? p.creator === creator : null
-  );
+  const filter = passenger.filter((p) => p.creator === creator);
 
   return (
     <div>

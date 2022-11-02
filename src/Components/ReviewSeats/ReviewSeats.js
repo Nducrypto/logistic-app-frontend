@@ -62,7 +62,7 @@ const ReviewSeats = ({
               disabled={alreadyBooked(p.seatNumbers[2])}
             />
             <InputReview
-              title={p.seatNumbers[2].number}
+              title={p.seatNumbers[3].number}
               value={p.seatNumbers[3].number}
               onChange={handleSelect}
               disabled={alreadyBooked(p.seatNumbers[3])}

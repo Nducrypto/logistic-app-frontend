@@ -31,8 +31,44 @@ const Navbar = () => {
         <div className={`nav-items ${isOpen && "open"}`}>
           <>
             {user?.result && (
-              <Link to="/bookinghistory" onClick={() => setIsOpen(false)}>
+              <Link
+                className="bookhistory"
+                to="/bookinghistory"
+                onClick={() => setIsOpen(false)}
+              >
                 BookingHisory
+              </Link>
+            )}
+
+            {/* ==== ADMIN=== */}
+            {user?.result.isAdmin && (
+              <Link
+                className="bookhistory"
+                to="/formadmin"
+                onClick={() => setIsOpen(false)}
+              >
+                Form
+              </Link>
+            )}
+
+            {/* ==== ADMIN=== */}
+            {user?.result.isAdmin && (
+              <Link to="/users" onClick={() => setIsOpen(false)}>
+                Users
+              </Link>
+            )}
+
+            {/* ==== ADMIN=== */}
+            {user?.result.isAdmin && (
+              <Link to="/allbookings" onClick={() => setIsOpen(false)}>
+                allbookings
+              </Link>
+            )}
+
+            {/* ==== ADMIN=== */}
+            {user?.result.isAdmin && (
+              <Link to="/locations" onClick={() => setIsOpen(false)}>
+                locations
               </Link>
             )}
 

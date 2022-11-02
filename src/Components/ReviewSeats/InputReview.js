@@ -6,6 +6,7 @@ const InputReview = ({ value, onChange, disabled, title }) => {
     <Typography>
       {title}
       <input
+        style={{ width: "3rem", height: "2rem" }}
         type="checkbox"
         value={value}
         onChange={onChange}
