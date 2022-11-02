@@ -12,10 +12,7 @@ import {
 import { places } from "../../Objects/Constants/Categories";
 import { useStateContext } from "../../States/Contexts/ContextProvider";
 import { useDispatch } from "react-redux";
-import {
-  createBooking,
-  createLocations,
-} from "../../States/Action/LocationActions";
+import { createLocations } from "../../States/Action/LocationActions";
 
 const FormAdmin = () => {
   const {
