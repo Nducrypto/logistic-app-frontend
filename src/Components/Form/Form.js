@@ -200,7 +200,11 @@ const Form = () => {
                       style={{ marginTop: "2rem" }}
                       onChange={(e) => setDate(FormatDate(e.target.value))}
                       value={date}
-                      type="date"
+                      // type="date"
+                      type="datetime-local"
+                      inputProps={{
+                        min: new Date().toISOString().slice(0, 16),
+                      }}
                     />
                   </div>
 
