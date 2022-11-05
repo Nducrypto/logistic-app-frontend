@@ -21,6 +21,7 @@ export const ContextProvider = ({ children }) => {
   const [error, setError] = useState(false);
   const [form, setForm] = useState(initialState);
   const [selectedSeats, setSelectedSeats] = useState([]);
+  const [bookedSeat, setBookedSeat] = useState([]);
 
   return (
     <stateContext.Provider
@@ -49,6 +50,8 @@ export const ContextProvider = ({ children }) => {
         initialState,
         selectedSeats,
         setSelectedSeats,
+        bookedSeat,
+        setBookedSeat,
       }}
     >
       {children}

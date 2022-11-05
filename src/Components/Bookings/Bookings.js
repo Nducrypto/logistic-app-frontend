@@ -17,11 +17,17 @@ import gigbus from "../../assets/gigbus.jpg";
 import ReviewSeats from "../ReviewSeats/ReviewSeats";
 
 const Expertise = () => {
-  const { open, setOpen, setError, selectedSeats, setSelectedSeats } =
-    useStateContext();
+  const {
+    open,
+    setOpen,
+    setError,
+    selectedSeats,
+    setSelectedSeats,
+    bookedSeat,
+    setBookedSeat,
+  } = useStateContext();
 
   const location = useLocation();
-  console.log(location);
   const navigate = useNavigate();
   const departureTerminal = location.state.departureTerminal;
   const arrivalTerminal = location.state.arrivalTerminal;
@@ -40,6 +46,7 @@ const Expertise = () => {
   const handleSelect = (e) => {
     const checked = e.target.checked;
     const value = e.target.value;
+    const id = e.target.id;
 
     setSelectedSeats(
       checked
@@ -47,14 +54,20 @@ const Expertise = () => {
         : selectedSeats.filter((item) => item !== value)
     );
 
+    setBookedSeat(
+      checked ? [...bookedSeat, id] : bookedSeat.filter((p) => p !== id)
+    );
+
     if (selectedSeats.length >= Number(adults)) {
       setError(true);
       setSelectedSeats([]);
+      setBookedSeat([]);
     } else {
       return selectedSeats;
     }
   };
   console.log(selectedSeats);
+  console.log(bookedSeat);
 
   return (
     <div

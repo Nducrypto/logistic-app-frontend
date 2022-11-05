@@ -21,8 +21,7 @@ export const deleteLocations = (id) => API.delete(`/page/${id}`);
 
 // ==========PASSENGER BOOKINGS======
 export const fetchAllBoookings = () => API.get("/passenger");
-export const createPassengerBooking = (newBooking) =>
-  API.post("/passenger", newBooking);
+export const createPassengerBooking = (neww) => API.post("/passenger", neww);
 export const deletePassengerBookings = (id) => API.delete(`/passenger/${id}`);
 
 //    =======Auth API=====

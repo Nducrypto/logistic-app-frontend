@@ -15,6 +15,7 @@ const PassengerInfo = () => {
   const adults = location.state.adults;
   const departureTerminal = location.state.departureTerminal;
   const arrivalTerminal = location.state.arrivalTerminal;
+  const bookedSeat = location.state.bookedSeat;
 
   const navigate = useNavigate();
   const { user } = useAuthContext();
@@ -32,6 +33,7 @@ const PassengerInfo = () => {
         departureTerminal,
         arrivalTerminal,
         selectedSeats,
+        bookedSeat,
         creator,
         ...form,
       })
@@ -246,7 +248,7 @@ const PassengerInfo = () => {
             >
               <div>seatNumber(s)</div>
               <div style={{ display: "flex" }}>
-                {selectedSeats.map((p, i) => (
+                {bookedSeat.map((p, i) => (
                   <div key={i}>
                     <div>{p},</div>
                   </div>

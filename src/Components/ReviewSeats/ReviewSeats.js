@@ -17,8 +17,15 @@ const ReviewSeats = ({
   adults,
 }) => {
   const navigate = useNavigate();
-  const { initialState, setForm, setOpen, error, setError, selectedSeats } =
-    useStateContext();
+  const {
+    bookedSeat,
+    initialState,
+    setForm,
+    setOpen,
+    error,
+    setError,
+    selectedSeats,
+  } = useStateContext();
 
   return (
     <AppBar sx={{ color: "black" }}>
@@ -45,61 +52,71 @@ const ReviewSeats = ({
           <>
             <InputReview
               title={p.seatNumbers[0].number}
-              value={p.seatNumbers[0].number}
+              value={p.seatNumbers[0]._id}
+              id={p.seatNumbers[0].number}
               onChange={handleSelect}
               disabled={alreadyBooked(p.seatNumbers[0])}
             />
             <InputReview
               title={p.seatNumbers[1].number}
-              value={p.seatNumbers[1].number}
+              value={p.seatNumbers[1]._id}
+              id={p.seatNumbers[1].number}
               onChange={handleSelect}
               disabled={alreadyBooked(p.seatNumbers[1])}
             />
             <InputReview
               title={p.seatNumbers[2].number}
-              value={p.seatNumbers[2].number}
+              value={p.seatNumbers[2]._id}
+              id={p.seatNumbers[2].number}
               onChange={handleSelect}
               disabled={alreadyBooked(p.seatNumbers[2])}
             />
             <InputReview
               title={p.seatNumbers[3].number}
-              value={p.seatNumbers[3].number}
+              value={p.seatNumbers[3]._id}
+              id={p.seatNumbers[3].number}
               onChange={handleSelect}
               disabled={alreadyBooked(p.seatNumbers[3])}
             />
             <InputReview
               title={p.seatNumbers[4].number}
-              value={p.seatNumbers[4].number}
+              value={p.seatNumbers[4]._id}
+              id={p.seatNumbers[4].number}
               onChange={handleSelect}
               disabled={alreadyBooked(p.seatNumbers[4])}
             />
             <InputReview
               title={p.seatNumbers[5].number}
-              value={p.seatNumbers[5].number}
+              value={p.seatNumbers[5]._id}
+              id={p.seatNumbers[5].number}
               onChange={handleSelect}
               disabled={alreadyBooked(p.seatNumbers[5])}
             />
             <InputReview
               title={p.seatNumbers[6].number}
-              value={p.seatNumbers[6].number}
+              value={p.seatNumbers[6]._id}
+              id={p.seatNumbers[6].number}
               onChange={handleSelect}
               disabled={alreadyBooked(p.seatNumbers[6])}
             />
             <InputReview
               title={p.seatNumbers[7].number}
-              value={p.seatNumbers[7].number}
+              value={p.seatNumbers[7]._id}
+              id={p.seatNumbers[7].number}
               onChange={handleSelect}
               disabled={alreadyBooked(p.seatNumbers[7])}
             />
             <InputReview
               title={p.seatNumbers[8].number}
-              value={p.seatNumbers[8].number}
+              value={p.seatNumbers[8]._id}
+              id={p.seatNumbers[8].number}
               onChange={handleSelect}
               disabled={alreadyBooked(p.seatNumbers[8])}
             />
             <InputReview
               title={p.seatNumbers[9].number}
-              value={p.seatNumbers[9].number}
+              value={p.seatNumbers[9]._id}
+              id={p.seatNumbers[9].number}
               onChange={handleSelect}
               disabled={alreadyBooked(p.seatNumbers[9])}
             />
@@ -131,6 +148,7 @@ const ReviewSeats = ({
                     date,
                     arrivalTerminal,
                     adults,
+                    bookedSeat,
                   },
                 });
               }}

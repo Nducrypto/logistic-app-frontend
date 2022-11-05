@@ -118,7 +118,7 @@ const BookingHistory = () => {
                   >
                     <div>seatNumber(s)</div>
                     <div style={{ display: "flex" }}>
-                      {p.selectedSeats.map((p, i) => (
+                      {p.bookedSeat.map((p, i) => (
                         <div key={i}>
                           <div>{p},</div>
                         </div>
