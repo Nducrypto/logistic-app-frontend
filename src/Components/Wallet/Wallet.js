@@ -1,6 +1,6 @@
 import { Grid, Typography } from "@mui/material";
 import React from "react";
-import budget from "../../assets/budget.png";
+import busystreet from "../../assets/busystreet.jpg";
 import card from "../../assets/card.jpg";
 import "./Wallet.css";
 
@@ -33,7 +33,7 @@ const Enjoy = () => {
               fontWeight: "700",
             }}
           >
-            Enjoy the <span>GIGM Appvantage</span>
+            Enjoy the <span>M&E Motors Appvantage</span>
           </Typography>
           <Typography
             variant="h4"
@@ -60,18 +60,18 @@ const Enjoy = () => {
           xs={12}
           sm={6}
           sx={{
-            backgroundColor: "white",
+            backgroundColor: "black",
             height: "25rem",
             padding: "2rem 2rem 2rem 2rem",
           }}
         >
           <img
             alt=""
-            src={budget}
+            src={busystreet}
             style={{
-              height: "100%",
+              height: "105%",
               width: "100%",
-              borderRadius: "2rem",
+              borderRadius: "1rem",
             }}
           />
         </Grid>
@@ -107,7 +107,7 @@ const Enjoy = () => {
               marginLeft: "1rem",
             }}
           >
-            The GIGM digital wallet is a seamless way to pay <br /> for
+            The M&EM digital wallet is a seamless way to pay <br /> for
             transactions within our ecosystem. Purchase <br />
             bus tickets, airtime, data and pay for utility bills <br /> using
             the wallet available only on the mobile app.

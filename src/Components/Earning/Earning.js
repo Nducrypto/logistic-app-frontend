@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Grid, Typography, CardContent, Button } from "@mui/material";
-import card from "../../assets/card.jpg";
+import truck from "../../assets/truck.jpg";
 
 const Earnin = () => {
   return (
@@ -16,8 +16,8 @@ const Earnin = () => {
       >
         <Grid
           item
-          xs={12}
-          sm={12}
+          xs={11}
+          sm={11}
           md={6}
           sx={{
             padding: { md: "0rem 0rem 0rem 2rem" },
@@ -49,7 +49,7 @@ const Earnin = () => {
                   fontSize: "1.3rem",
                 }}
               >
-                Earn easy with GIGM
+                Earn easy with M&EM
               </Typography>
               <Typography
                 paragraph
@@ -74,15 +74,15 @@ const Earnin = () => {
             </CardContent>
           </Card>
         </Grid>
-        <Grid item xs={12} sm={12} md={6}>
+        <Grid item xs={11} sm={11} md={6}>
           <Typography
             sx={{
               marginTop: { xs: "2rem", md: "-0.1rem", sm: "-0.1rem" },
-              height: { md: "30rem", sm: "30rem" },
+              height: { md: "30rem", sm: "30rem", xs: "20rem" },
             }}
           >
             <img
-              src={card}
+              src={truck}
               style={{
                 height: "100%",
                 width: "100%",

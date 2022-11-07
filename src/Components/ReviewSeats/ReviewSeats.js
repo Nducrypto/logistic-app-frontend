@@ -139,7 +139,7 @@ const ReviewSeats = ({
                 textTransform: "lowerCase",
                 textAlign: "center",
               }}
-              onClick={(t) => {
+              onClick={() => {
                 setForm(initialState);
                 navigate("/passenger", {
                   state: {

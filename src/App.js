@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Navbar from "./Components/Navbar/Navbar";
 import Bookings from "./Components/Bookings/Bookings";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./Components/Home/Home";
 import Footer from "./Components/Footer/Footer";
 import Subscribe from "./Components/Subscribe/Subscribe";
@@ -16,12 +16,13 @@ import AllBookings from "./Admin/Users/AllBookings/AllBookings";
 import FormAdmin from "./Admin/FormAdmin/FormAdmin";
 import { getAllBookings } from "./States/Action/PassengerActions";
 import Locations from "./Admin/Locations/Locations";
-import ProtectedRoute from "./Admin/ProtectedRoute";
+import AdminProtectedRoute from "./Admin/AdminProtectedRoute";
+import UserProtectedRoute from "./Admin/UserProtectedRoute";
+import Profile from "./Components/Profile/Profile";
 
 const App = () => {
-  const user = JSON.parse(localStorage.getItem("profile"));
-
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getLocations());
     dispatch(getUsers());
@@ -34,51 +35,72 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
+          path="/profile"
+          element={
+            <UserProtectedRoute>
+              <Profile />
+            </UserProtectedRoute>
+          }
+        />
+        <Route
           path="/bookinghistory"
-          element={user?.result ? <BookingHistory /> : <Navigate to="/" />}
+          element={
+            <UserProtectedRoute>
+              <BookingHistory />
+            </UserProtectedRoute>
+          }
         />
 
         <Route
           path="/passenger"
-          element={user?.result ? <PassengerInfo /> : <Navigate to="/" />}
+          element={
+            <UserProtectedRoute>
+              <PassengerInfo />
+            </UserProtectedRoute>
+          }
         />
 
         <Route
           path="/select-bus"
-          element={user?.result ? <Bookings /> : <Navigate to="/" />}
+          element={
+            <UserProtectedRoute>
+              <Bookings />
+            </UserProtectedRoute>
+          }
         />
-        {/* <Route path="/:id" exact component={Detail} /> */}
+
         <Route path="/auth" element={<Auth />} />
+        {/* ======ADMIN PROTECTED ROUTE=== */}
         <Route
           path="/users"
           element={
-            <ProtectedRoute>
+            <AdminProtectedRoute>
               <Users />
-            </ProtectedRoute>
+            </AdminProtectedRoute>
           }
         />
         <Route
           path="/allbookings"
           element={
-            <ProtectedRoute>
+            <AdminProtectedRoute>
               <AllBookings />
-            </ProtectedRoute>
+            </AdminProtectedRoute>
           }
         />
         <Route
           path="/formadmin"
           element={
-            <ProtectedRoute>
+            <AdminProtectedRoute>
               <FormAdmin />
-            </ProtectedRoute>
+            </AdminProtectedRoute>
           }
         />
         <Route
           path="/locations"
           element={
-            <ProtectedRoute>
+            <AdminProtectedRoute>
               <Locations />
-            </ProtectedRoute>
+            </AdminProtectedRoute>
           }
         />
       </Routes>

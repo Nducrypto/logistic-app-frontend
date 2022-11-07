@@ -3,7 +3,7 @@ import * as api from "../Api/index.js";
 export const getLocations = () => async (dispatch) => {
   try {
     const { data } = await api.fetchLocations();
-    console.log(data);
+
     dispatch({ type: "FETCH_LOCATIONS", payload: data });
   } catch (error) {
     console.log(error);
@@ -13,7 +13,7 @@ export const getLocations = () => async (dispatch) => {
 export const createLocations = (booking) => async (dispatch) => {
   try {
     const { data } = await api.createLocations(booking);
-    console.log(data);
+
     dispatch({ type: "CREATE_LOCATIONS", payload: data });
   } catch (error) {
     console.log(error);

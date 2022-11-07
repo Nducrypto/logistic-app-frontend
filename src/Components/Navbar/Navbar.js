@@ -50,6 +50,15 @@ const Navbar = () => {
                 Form
               </Link>
             )}
+            {user?.result && (
+              <Link
+                // className="bookhistory"
+                to="/profile"
+                onClick={() => setIsOpen(false)}
+              >
+                profile
+              </Link>
+            )}
 
             {/* ==== ADMIN=== */}
             {user?.result.isAdmin && (
@@ -81,17 +90,7 @@ const Navbar = () => {
             >
               Contact
             </Link>
-            {user?.result && (
-              <span
-                style={{
-                  color: "yellow",
-                  fontSize: "1.2rem",
-                  marginRight: "-3rem",
-                }}
-              >
-                {user?.result.name}
-              </span>
-            )}
+
             {user?.result && (
               <Button
                 onClick={() => {

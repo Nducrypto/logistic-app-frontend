@@ -147,7 +147,7 @@ const PassengerInfo = () => {
               Terms and Condition
             </Typography>
             <Typography>
-              Please Note that NDU MOTORS does not have a refund policy,
+              Please Note that M&E MOTORS does not have a refund policy,
               <br /> However, our tickets valid for a Month. By proceeding to
               Make Payment,
               <br /> You agree to the Terms and conditions of NDUM
@@ -288,6 +288,7 @@ const PassengerInfo = () => {
             <div style={{ marginTop: "2rem" }}>
               <Button
                 disabled={
+                  !form.fullName ||
                   !form.email ||
                   !form.nextOfKinName ||
                   !form.nextOfKinNumber ||

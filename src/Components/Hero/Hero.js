@@ -43,9 +43,9 @@ const Heros = () => {
             }}
           >
             The modern way to <br /> commute across cities
-            <Typography sx={{ marginTop: "1rem", fontSize: "1rem" }}>
-              GIGM is an African technology powered company, providing seamless
-              mobility services to commuters across Africa
+            <Typography sx={{ marginTop: "1rem", fontSize: "1.5rem" }}>
+              MIKELLE & EBUBE MOTORS is an African technology powered company,
+              providing seamless mobility services to commuters across Africa
             </Typography>
           </Typography>
         </Grid>

@@ -6,20 +6,24 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 const InputAuth = ({
   id,
-  handleChange,
+  onChange,
   label,
   half,
   autoFocus,
   type,
   handleShowPassword,
+  multiline,
+  rows,
 }) => (
   <Grid item xs={12} sm={half ? 6 : 12}>
     <TextField
       id={id}
-      onChange={handleChange}
+      onChange={onChange}
       variant="outlined"
       required
       fullWidth
+      multiline={multiline}
+      rows={rows}
       label={label}
       autoFocus={autoFocus}
       type={type}

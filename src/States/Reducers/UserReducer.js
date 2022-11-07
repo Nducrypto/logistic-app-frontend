@@ -1,7 +1,27 @@
-const allUsers = (allUsers = [], action) => {
+const allUsers = (
+  allUsers = { allUser: [], singleUser: [], error: false },
+  action
+) => {
   switch (action.type) {
+    case "SET_ERROR":
+      return { ...allUsers, error: action.payload };
+
     case "FETCH_USERS":
-      return action.payload;
+      return {
+        ...allUsers,
+        allUser: action.payload,
+      };
+
+    case "FETCH_USER_BY_ID":
+      return { ...allUsers, singleUser: action.payload };
+
+    case "UPDATE_USER":
+      return {
+        ...allUsers,
+        singleUser: allUsers.singleUser.map((p) =>
+          p._id === action.payload._id ? action?.payload : p
+        ),
+      };
 
     //   case "CREATE":
     //     return {

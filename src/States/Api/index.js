@@ -30,3 +30,7 @@ export const register = (formAuth) => API.post("/auth/register", formAuth);
 
 // ========USERS API=======
 export const fetchUsers = () => API.get("/users");
+export const fetchUser = (id) => API.get(`/users/${id}`);
+
+export const updateUser = (id, userUpdate) =>
+  API.put(`/users/${id}`, userUpdate);

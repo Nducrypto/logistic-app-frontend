@@ -1,6 +1,5 @@
 import { Grid, Typography } from "@mui/material";
 import React from "react";
-import card from "../../assets/card.jpg";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -16,9 +15,12 @@ const Footer = () => {
       >
         <Grid item xs={12} md={12} sm={12} lg={3}>
           <Typography
-            sx={{ marginTop: { xs: "7rem", md: "5rem", lg: "-0.4rem" } }}
+            sx={{
+              fontWeight: "700",
+              marginTop: { xs: "7rem", md: "5rem", lg: "-0.4rem" },
+            }}
           >
-            <img alt="" src={card} style={{ height: "4rem", width: "4rem" }} />
+            MIKELLE & EBUBE MOTORS
           </Typography>
         </Grid>
         <Grid item xs={6} md={6} lg={2} sm={6}>

@@ -8,7 +8,7 @@ import {
   CircularProgress,
   Paper,
 } from "@mui/material";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import React from "react";
 import { useStateContext } from "../../States/Contexts/ContextProvider.js";
 import useFetch from "../../Hooks/useFetch.js";
@@ -28,7 +28,6 @@ const Expertise = () => {
   } = useStateContext();
 
   const location = useLocation();
-  const navigate = useNavigate();
   const departureTerminal = location.state.departureTerminal;
   const arrivalTerminal = location.state.arrivalTerminal;
   const adults = location.state.adults;
@@ -77,12 +76,7 @@ const Expertise = () => {
     >
       {/* ========= CUSTOMER DETAILS GRID CONTAINER==== */}
       <Paper>
-        <Grid
-          container
-          alignItems="center"
-          justifyContent="center"
-          // style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}
-        >
+        <Grid container alignItems="center" justifyContent="center">
           {/* =======EMAIL===== */}
         </Grid>
       </Paper>
@@ -142,15 +136,13 @@ const Expertise = () => {
                     departure: {p.departureTerminal} . Arrival:
                     {p.arrivalTerminal}
                   </Typography>
-                  <Typography paragraph>Available Seat(s)</Typography>
-                  <Typography>07:45am</Typography>
                   <Typography paragraph>
-                    {moment(date).format("dddd, MMMM Do YYYY")} : 07:45am
+                    {moment(date).format("MMMM Do YYYY")}
                   </Typography>
-                  <Typography paragraph>adult {adults}</Typography>
-                  <Button onClick={() => navigate(`/${p._id}`)}>
-                    View more about your travel
-                  </Button>
+                  <Typography paragraph>
+                    {moment(date).format("dddd")} : 07:45am
+                  </Typography>
+                  <Typography paragraph>Adult(s) : {adults}</Typography>
                 </CardContent>
               </Grid>
 

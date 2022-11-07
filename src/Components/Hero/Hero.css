@@ -2,7 +2,7 @@
 .hero-container{
     display: flex;
     justify-content: space-between;
-    background-image: url("../../assets/hero.jpg");
+    background-image: url("../../assets/night.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
