@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-// const API = axios.create({ baseURL: "http://localhost:5000/api" });
-const API = axios.create({ baseURL: "https://logistic-api.onrender.com/api" });
+const API = axios.create({ baseURL: "http://localhost:5000/api" });
+// const API = axios.create({ baseURL: "https://logistic-api.onrender.com/api" });
 
 const useFetch = (url) => {
   const [data, setData] = useState([]);

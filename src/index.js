@@ -9,16 +9,19 @@ import { Provider } from "react-redux";
 import { ContextProvider } from "./States/Contexts/ContextProvider";
 import Reducers from "./States/Reducers";
 import { AuthContextProvider } from "./States/Contexts/AuthContext";
+import { BrowserRouter } from "react-router-dom";
 
 const store = legacy_createStore(Reducers, compose(applyMiddleware(thunk)));
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-    <ContextProvider>
-      <AuthContextProvider>
-        <App />
-      </AuthContextProvider>
-    </ContextProvider>
+    <BrowserRouter>
+      <ContextProvider>
+        <AuthContextProvider>
+          <App />
+        </AuthContextProvider>
+      </ContextProvider>
+    </BrowserRouter>
   </Provider>
 );

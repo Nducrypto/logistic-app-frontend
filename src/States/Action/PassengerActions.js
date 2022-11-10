@@ -2,9 +2,12 @@ import * as api from "../Api/index.js";
 
 export const getAllBookings = () => async (dispatch) => {
   try {
+    dispatch({ type: "START_PASSENGER_LOADING" });
+
     const { data } = await api.fetchAllBoookings();
 
     dispatch({ type: "FETCH_ALL_BOOKINGS", payload: data });
+    dispatch({ type: "END_PASSENGER_LOADING" });
   } catch (error) {
     console.log(error);
   }

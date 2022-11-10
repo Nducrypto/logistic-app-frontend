@@ -5,6 +5,7 @@ import Heros from "../Hero/Hero";
 import Wallet from "../Wallet/Wallet";
 import Earning from "../Earning/Earning";
 import { useLocation } from "react-router-dom";
+import Subscribe from "../Subscribe/Subscribe";
 
 const Home = () => {
   const location = useLocation();
@@ -19,6 +20,7 @@ const Home = () => {
       {/* <Gallery /> */}
       <Wallet />
       <Earning />
+      <Subscribe />
     </div>
   );
 };

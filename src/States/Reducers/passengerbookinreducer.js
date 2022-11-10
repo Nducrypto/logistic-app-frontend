@@ -1,4 +1,7 @@
-const passengers = (passengers = { passenger: [], isError: false }, action) => {
+const passengers = (
+  passengers = { passenger: [], isError: false, loadingPassenger: false },
+  action
+) => {
   switch (action.type) {
     case "SET_ERROR":
       return { ...passengers, isError: action.payload };
@@ -19,6 +22,12 @@ const passengers = (passengers = { passenger: [], isError: false }, action) => {
         ...passengers,
         passenger: passengers.passenger.filter((t) => t._id !== action.payload),
       };
+
+    case "START_PASSENGER_LOADING":
+      return { ...passengers, loadingPassenger: true };
+
+    case "END_PASSENGER_LOADING":
+      return { ...passengers, loadingPassenger: false };
 
     default:
       return passengers;

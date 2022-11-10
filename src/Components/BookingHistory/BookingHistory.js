@@ -4,6 +4,7 @@ import moment from "moment";
 
 import { Container } from "@mui/system";
 import { useSelector } from "react-redux";
+import Subscribe from "../Subscribe/Subscribe";
 
 const BookingHistory = () => {
   const { passenger } = useSelector((state) => state.passengers);
@@ -131,6 +132,7 @@ const BookingHistory = () => {
           </Container>
         </Grid>
       </Grid>
+      <Subscribe />
     </div>
   );
 };
