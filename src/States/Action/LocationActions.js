@@ -13,7 +13,6 @@ export const getLocations = () => async (dispatch) => {
 export const createLocations = (booking) => async (dispatch) => {
   try {
     const { data } = await api.createLocations(booking);
-
     dispatch({ type: "CREATE_LOCATIONS", payload: data });
   } catch (error) {
     console.log(error);

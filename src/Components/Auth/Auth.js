@@ -132,7 +132,7 @@ const SignUp = () => {
             fullWidth
             variant="contained"
             color="primary"
-            style={{
+            sx={{
               margin: theme.spacing(3, 0, 2),
               marginTop: theme.spacing(3),
             }}

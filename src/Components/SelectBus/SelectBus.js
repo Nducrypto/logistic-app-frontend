@@ -17,7 +17,7 @@ import gigbus from "../../assets/gigbus.jpg";
 import ReviewSeats from "../ReviewSeats/ReviewSeats";
 import Subscribe from "../Subscribe/Subscribe.js";
 
-const Expertise = () => {
+const SelectBus = () => {
   const {
     open,
     setOpen,
@@ -157,7 +157,7 @@ const Expertise = () => {
                         marginLeft: { md: "12rem", xs: "5rem" },
                       }}
                     >
-                      ${p.price}
+                      ${Intl.NumberFormat().format(p.price)}
                     </Typography>
                     <Button
                       sx={{
@@ -194,4 +194,4 @@ const Expertise = () => {
   );
 };
 
-export default Expertise;
+export default SelectBus;

@@ -2,8 +2,11 @@ import * as api from "../Api/index.js";
 
 export const getUsers = () => async (dispatch) => {
   try {
+    dispatch({ type: "LOADING_TRUE" });
+
     const { data } = await api.fetchUsers();
     dispatch({ type: "FETCH_USERS", payload: data });
+    dispatch({ type: "LOADING_FALSE" });
   } catch (error) {
     console.log(error);
   }

@@ -1,5 +1,5 @@
 import Navbar from "./Navbar/Navbar";
-import Bookings from "./Bookings/Bookings";
+import SelectBus from "./SelectBus/SelectBus";
 import Home from "./Home/Home";
 import Footer from "./Footer/Footer";
 import Subscribe from "./Subscribe/Subscribe";
@@ -10,7 +10,7 @@ import Profile from "./Profile/Profile";
 
 export {
   Navbar,
-  Bookings,
+  SelectBus,
   Home,
   Footer,
   Subscribe,

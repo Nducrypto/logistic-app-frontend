@@ -26,6 +26,11 @@ const PassengerInfo = () => {
     `/page?departureTerminal=${departureTerminal}&arrivalTerminal=${arrivalTerminal}`
   );
   const dispatch = useDispatch();
+
+  const totalPrice = (p) => {
+    return p * adults;
+  };
+
   const handleSubmit = () => {
     dispatch(
       createPassengerBooking({
@@ -36,6 +41,7 @@ const PassengerInfo = () => {
         selectedSeats,
         bookedSeat,
         creator,
+        totalPrice: totalPrice(),
         ...form,
       })
     );
@@ -282,7 +288,7 @@ const PassengerInfo = () => {
                     }}
                   >
                     <div>Price</div>
-                    <div>{p.price}</div>
+                    <div>${Intl.NumberFormat().format(p.price)}</div>
                   </div>
                   {/* ====== TOTAL AMOUNT==== */}
                   <div
@@ -294,7 +300,10 @@ const PassengerInfo = () => {
                     }}
                   >
                     <div>Total Amount</div>
-                    <div>${p.price * adults}</div>
+                    {/* <div>${handleTotal(p.price)}</div> */}
+                    <div>
+                      ${Intl.NumberFormat().format(totalPrice(p.price))}
+                    </div>
                   </div>
                 </div>
               ))}

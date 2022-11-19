@@ -1,11 +1,8 @@
 const allUsers = (
-  allUsers = { allUser: [], singleUser: [], error: false },
+  allUsers = { allUser: [], singleUser: [], loading: false, error: false },
   action
 ) => {
   switch (action.type) {
-    case "SET_ERROR":
-      return { ...allUsers, error: action.payload };
-
     case "FETCH_USERS":
       return {
         ...allUsers,
@@ -23,17 +20,14 @@ const allUsers = (
         ),
       };
 
-    //   case "CREATE":
-    //     return {
-    //       ...bookings,
-    //       booking: [...bookings.booking, action.payload],
-    //     };
+    case "SET_ERROR":
+      return { ...allUsers, error: action.payload };
 
-    //   case "DELETE":
-    //     return {
-    //       ...bookings,
-    //       booking: bookings.booking.filter((t) => t._id !== action.payload),
-    //     };
+    case "LOADING_TRUE":
+      return { ...allUsers, loading: true };
+
+    case "LOADING_FALSE":
+      return { ...allUsers, loading: false };
 
     default:
       return allUsers;

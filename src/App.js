@@ -13,7 +13,7 @@ import {
   UserProtectedRoute,
 } from "./Admin";
 import {
-  Bookings,
+  SelectBus,
   Home,
   Navbar,
   Footer,
@@ -76,7 +76,7 @@ const App = () => {
           path="/select-bus"
           element={
             <UserProtectedRoute>
-              <Bookings />
+              <SelectBus />
             </UserProtectedRoute>
           }
         />
