@@ -1,5 +1,10 @@
 const allUsers = (
-  allUsers = { allUser: [], singleUser: [], loading: false, error: false },
+  allUsers = {
+    allUser: [],
+    singleUser: {},
+    loading: false,
+    error: false,
+  },
   action
 ) => {
   switch (action.type) {
@@ -13,6 +18,7 @@ const allUsers = (
       return { ...allUsers, singleUser: action.payload };
 
     case "UPDATE_USER":
+      localStorage.setItem("profile", JSON.stringify({ ...action?.payload }));
       return {
         ...allUsers,
         singleUser: allUsers.singleUser.map((p) =>

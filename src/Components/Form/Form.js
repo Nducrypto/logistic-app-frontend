@@ -161,38 +161,43 @@ const Form = () => {
               {mode === "" || mode === "book a sit" || mode === "one way" ? (
                 <div>
                   <div style={{ marginTop: "3rem" }}>
-                    <InputLabel>Travelling From</InputLabel>
-                    <Select
-                      fullWidth
-                      onChange={(e) => setDepartureTerminal(e.target.value)}
-                      value={departureTerminal}
-                    >
-                      {places.map((p) => (
-                        <MenuItem key={p.location} value={p.location}>
-                          {p.location}
-                        </MenuItem>
-                      ))}
-                    </Select>
+                    <FormControl fullWidth>
+                      <InputLabel>Travelling From</InputLabel>
+
+                      <Select
+                        fullWidth
+                        onChange={(e) => setDepartureTerminal(e.target.value)}
+                        value={departureTerminal}
+                      >
+                        {places.map((p) => (
+                          <MenuItem key={p.location} value={p.location}>
+                            {p.location}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
                   </div>
 
                   <div style={{ marginTop: "2rem" }}>
-                    <InputLabel>Travelling To</InputLabel>
+                    <FormControl fullWidth>
+                      <InputLabel>Travelling To</InputLabel>
 
-                    <Select
-                      fullWidth
-                      onChange={(e) => setArrivalTerminal(e.target.value)}
-                      value={arrivalTerminal}
-                    >
-                      {!departureTerminal ? (
-                        <div>select depature terminal</div>
-                      ) : (
-                        filteredLocation.map((f) => (
-                          <MenuItem key={f.location} value={f.location}>
-                            {f.location}
-                          </MenuItem>
-                        ))
-                      )}
-                    </Select>
+                      <Select
+                        fullWidth
+                        onChange={(e) => setArrivalTerminal(e.target.value)}
+                        value={arrivalTerminal}
+                      >
+                        {!departureTerminal ? (
+                          <div>select depature terminal</div>
+                        ) : (
+                          filteredLocation.map((f) => (
+                            <MenuItem key={f.location} value={f.location}>
+                              {f.location}
+                            </MenuItem>
+                          ))
+                        )}
+                      </Select>
+                    </FormControl>
                   </div>
 
                   <div>
@@ -209,19 +214,21 @@ const Form = () => {
                   </div>
 
                   <div style={{ marginTop: "2rem" }}>
-                    <InputLabel>Adults</InputLabel>
-                    <Select
-                      fullWidth
-                      onChange={(e) => setAdults(e.target.value)}
-                      value={adults}
-                      type="number"
-                    >
-                      {number.map((p) => (
-                        <MenuItem key={p.adult} value={p.adult}>
-                          {p.adult}
-                        </MenuItem>
-                      ))}
-                    </Select>
+                    <FormControl fullWidth>
+                      <InputLabel>Adults</InputLabel>
+                      <Select
+                        fullWidth
+                        onChange={(e) => setAdults(e.target.value)}
+                        value={adults}
+                        type="number"
+                      >
+                        {number.map((p) => (
+                          <MenuItem key={p.adult} value={p.adult}>
+                            {p.adult}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
                   </div>
                 </div>
               ) : null}

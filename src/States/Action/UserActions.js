@@ -14,10 +14,7 @@ export const getUsers = () => async (dispatch) => {
 
 export const getUser = (id) => async (dispatch) => {
   try {
-    // dispatch({ type: START_LOADING });
-
     const { data } = await api.fetchUser(id);
-    console.log(data);
 
     dispatch({ type: "FETCH_USER_BY_ID", payload: data });
   } catch (error) {
@@ -27,11 +24,15 @@ export const getUser = (id) => async (dispatch) => {
 
 export const updateUser = (id, update) => async (dispatch) => {
   try {
+    dispatch({ type: "LOADING_TRUE" });
+
     const { data } = await api.updateUser(id, update);
-    // console.log(data);
     dispatch({ type: "UPDATE_USER", payload: data });
+    dispatch({ type: "FETCH_USER_BY_ID", payload: data });
+
+    dispatch({ type: "LOADING_FALSE" });
   } catch (err) {
-    dispatch({ type: "SET_ERROR", payload: err.data.message });
+    dispatch({ type: "SET_ERROR", payload: err.response.data.message });
   }
 };
 // export const deleteUser = (id) => async (dispatch) => {

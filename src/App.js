@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate, useLocation } from "react-router-dom";
 import { getLocations } from "./States/Action/LocationActions";
 import { useDispatch } from "react-redux";
 import { getUsers } from "./States/Action/UserActions";
@@ -26,6 +26,7 @@ import {
 const App = () => {
   const dispatch = useDispatch();
   const user = JSON.parse(localStorage.getItem("profile"));
+  const location = useLocation();
 
   const AuthProtected = ({ children }) => {
     if (!user?.result) {
@@ -36,10 +37,11 @@ const App = () => {
   };
 
   useEffect(() => {
+    JSON.parse(localStorage.getItem("profile"));
     dispatch(getLocations());
     dispatch(getUsers());
     dispatch(getAllBookings());
-  }, [dispatch]);
+  }, [location, dispatch]);
 
   return (
     <div>

@@ -14,6 +14,7 @@ const InputAuth = ({
   handleShowPassword,
   multiline,
   rows,
+  disabled,
 }) => (
   <Grid item xs={12} sm={half ? 6 : 12}>
     <TextField
@@ -22,6 +23,7 @@ const InputAuth = ({
       variant="outlined"
       required
       fullWidth
+      disabled={disabled}
       multiline={multiline}
       rows={rows}
       label={label}
