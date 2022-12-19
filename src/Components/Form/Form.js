@@ -202,14 +202,13 @@ const Form = () => {
 
                   <div>
                     <TextField
-                      style={{ marginTop: "2rem" }}
+                      sx={{ marginTop: "2rem" }}
                       onChange={(e) => setDate(FormatDate(e.target.value))}
                       value={date}
                       type="date"
-                      // type="datetime-local"
-                      // inputProps={{
-                      //   min: new Date().toISOString().slice(0, 16),
-                      // }}
+                      inputProps={{
+                        min: FormatDate(new Date()),
+                      }}
                     />
                   </div>
 
