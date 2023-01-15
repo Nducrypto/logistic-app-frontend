@@ -22,6 +22,7 @@ import {
   BookingHistory,
   Profile,
 } from "./Components/index";
+import ScrollToTop from "./Components/ScrollToTop";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -45,6 +46,7 @@ const App = () => {
 
   return (
     <div>
+      <ScrollToTop />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

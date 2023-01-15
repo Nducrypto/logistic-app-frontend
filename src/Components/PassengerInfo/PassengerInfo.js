@@ -47,6 +47,7 @@ const PassengerInfo = () => {
     );
   };
 
+  // =====UPDATE/BOOK SEAT NUMBER
   const handleClick = async () => {
     try {
       await Promise.all(

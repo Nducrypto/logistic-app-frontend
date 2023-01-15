@@ -14,9 +14,7 @@ import { places, number } from "../../Objects/Constants/Categories";
 import { useStateContext } from "../../States/Contexts/ContextProvider";
 import { useNavigate } from "react-router-dom";
 import FormatDate from "../../Utils/FormatDate";
-// import { useDispatch } from "react-redux";
 import { useAuthContext } from "../../States/Contexts/AuthContext";
-// import { createBooking } from "../../States/Action/BookingActions";
 
 const Form = () => {
   const {
@@ -28,16 +26,10 @@ const Form = () => {
     setDepartureTerminal,
     arrivalTerminal,
     setArrivalTerminal,
-
     adults,
     setAdults,
-    // price,
-    // setPrice,
-    // seats,
-    // setSeats,
   } = useStateContext();
   const { user } = useAuthContext();
-  // const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
