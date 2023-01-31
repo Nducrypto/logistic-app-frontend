@@ -37,6 +37,22 @@ const SelectBus = () => {
     `/page?departureTerminal=${departureTerminal}&arrivalTerminal=${arrivalTerminal}`
   );
 
+  // ====mapped seatNumbers here===
+  const seatNumbers = data
+    ?.map((p) => p.seatNumbers?.map((i) => i.number))
+    .flat();
+
+  // ===mapped unavailableDates and compared it to user choosed date by filtering it and also Flatetend d different arrays to a single array==
+  const unavailableDates = data
+    ?.flatMap((p) =>
+      p.seatNumbers?.map((i) =>
+        i.unavailableDates?.filter((p) => p.includes(date))
+      )
+    )
+    .flat();
+
+  const availableSeats = seatNumbers.length - unavailableDates.length;
+
   const alreadyBooked = (t) => {
     const isFound = t.unavailableDates.some((p) => p.includes(date));
 
@@ -142,6 +158,9 @@ const SelectBus = () => {
                       {moment(date).format("MMMM Do YYYY")}
                     </Typography>
                     <Typography paragraph>
+                      Available Seats : {availableSeats}
+                    </Typography>
+                    <Typography paragraph>
                       {moment(date).format("dddd")} : 07:45am
                     </Typography>
                     <Typography paragraph>Adult(s) : {adults}</Typography>
@@ -160,6 +179,7 @@ const SelectBus = () => {
                       ${Intl.NumberFormat().format(p.price)}
                     </Typography>
                     <Button
+                      variant="contained"
                       sx={{
                         marginTop: { md: "1rem" },
                         marginLeft: { md: "10rem" },
