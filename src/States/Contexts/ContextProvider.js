@@ -14,7 +14,7 @@ export const ContextProvider = ({ children }) => {
   const [departureTerminal, setDepartureTerminal] = useState("");
   const [arrivalTerminal, setArrivalTerminal] = useState("");
   const [date, setDate] = useState(FormatDate(new Date()));
-  const [adults, setAdults] = useState(0);
+  const [adults, setAdults] = useState(1);
   const [price, setPrice] = useState("");
   const [seats, setSeats] = useState([]);
   const [open, setOpen] = useState(false);

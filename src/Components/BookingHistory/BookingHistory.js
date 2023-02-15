@@ -119,11 +119,7 @@ const BookingHistory = () => {
                   >
                     <div>seatNumber(s)</div>
                     <div style={{ display: "flex" }}>
-                      {p.bookedSeat.map((p, i) => (
-                        <div key={i}>
-                          <div>{p},</div>
-                        </div>
-                      ))}
+                      {p.bookedSeat.join(",")}
                     </div>
                   </div>
                 </Paper>

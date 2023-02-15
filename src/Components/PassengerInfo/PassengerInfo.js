@@ -268,13 +268,7 @@ const PassengerInfo = () => {
                 }}
               >
                 <div>seatNumber(s)</div>
-                <div style={{ display: "flex" }}>
-                  {bookedSeat.map((p, i) => (
-                    <div key={i}>
-                      <div>{p},</div>
-                    </div>
-                  ))}
-                </div>
+                <div style={{ display: "flex" }}>{bookedSeat.join(",")}</div>
               </div>
 
               {/* =====PRICE==== */}
@@ -289,7 +283,7 @@ const PassengerInfo = () => {
                     }}
                   >
                     <div>Price</div>
-                    <div>${Intl.NumberFormat().format(p.price)}</div>
+                    <div>&#8358; {Intl.NumberFormat().format(p.price)}</div>
                   </div>
                   {/* ====== TOTAL AMOUNT==== */}
                   <div

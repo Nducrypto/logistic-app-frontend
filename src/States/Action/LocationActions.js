@@ -30,3 +30,19 @@ export const deleteLocations = (id) => async (dispatch) => {
     // console.log(err.response.data.message);
   }
 };
+export const handleDeleteunavDate =
+  (id, SeatNumberId, unavailableDates) => async (dispatch) => {
+    console.log(SeatNumberId);
+    try {
+      const { data } = await api.handleDeleteunavDate(
+        id,
+        SeatNumberId,
+        unavailableDates
+      );
+
+      dispatch({ type: "DELETE_UNAVAILABLEDATES", payload: data });
+    } catch (err) {
+      // dispatch({ type: "SET_ERROR", payload: err.response.data.message });
+      // console.log(err.response.data.message);
+    }
+  };

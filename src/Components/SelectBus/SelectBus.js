@@ -59,19 +59,19 @@ const SelectBus = () => {
     return isFound;
   };
 
-  const handleSelect = (e) => {
-    const checked = e.target.checked;
-    const value = e.target.value;
-    const id = e.target.id;
-
+  const handleSelect = (item) => {
+    const checkId = selectedSeats.find((p) => p === item._id);
     setSelectedSeats(
-      checked
-        ? [...selectedSeats, value]
-        : selectedSeats.filter((item) => item !== value)
+      checkId
+        ? selectedSeats.filter((id) => id !== item._id)
+        : [...selectedSeats, item._id]
     );
+    const checkNumber = bookedSeat.find((p) => p === item.number);
 
     setBookedSeat(
-      checked ? [...bookedSeat, id] : bookedSeat.filter((p) => p !== id)
+      !checkNumber
+        ? [...bookedSeat, item.number]
+        : bookedSeat.filter((p) => p !== item.number)
     );
 
     if (selectedSeats.length >= Number(adults)) {
@@ -82,8 +82,6 @@ const SelectBus = () => {
       return selectedSeats;
     }
   };
-  console.log(selectedSeats);
-  console.log(bookedSeat);
 
   return (
     <>
@@ -176,7 +174,7 @@ const SelectBus = () => {
                         marginLeft: { md: "12rem", xs: "5rem" },
                       }}
                     >
-                      ${Intl.NumberFormat().format(p.price)}
+                      &#8358; {Intl.NumberFormat().format(p.price)}
                     </Typography>
                     <Button
                       variant="contained"
