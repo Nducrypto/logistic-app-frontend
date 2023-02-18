@@ -24,6 +24,7 @@ const ReviewSeats = ({
     error,
     setError,
     selectedSeats,
+    vehicleId,
   } = useStateContext();
 
   const handleContinue = () => {
@@ -36,6 +37,7 @@ const ReviewSeats = ({
         arrivalTerminal,
         adults,
         bookedSeat,
+        vehicleId,
       },
     });
   };
@@ -133,7 +135,7 @@ const ReviewSeats = ({
                     ? "not-allowed"
                     : "pointer",
                 }}
-                onClick={() => handleSelect(p.seatNumbers[0])}
+                onClick={() => handleSelect(p.seatNumbers[0], p)}
                 disabled={alreadyBooked(p.seatNumbers[0])}
               >
                 {p.seatNumbers[0].number}
@@ -153,7 +155,7 @@ const ReviewSeats = ({
                     ? "not-allowed"
                     : "pointer",
                 }}
-                onClick={() => handleSelect(p.seatNumbers[1])}
+                onClick={() => handleSelect(p.seatNumbers[1], p)}
                 disabled={alreadyBooked(p.seatNumbers[1])}
               >
                 {p.seatNumbers[1].number}
@@ -172,7 +174,7 @@ const ReviewSeats = ({
                     ? "not-allowed"
                     : "pointer",
                 }}
-                onClick={() => handleSelect(p.seatNumbers[2])}
+                onClick={() => handleSelect(p.seatNumbers[2], p)}
                 disabled={alreadyBooked(p.seatNumbers[2])}
               >
                 {p.seatNumbers[2].number}
@@ -190,7 +192,7 @@ const ReviewSeats = ({
                     ? "not-allowed"
                     : "pointer",
                 }}
-                onClick={() => handleSelect(p.seatNumbers[3])}
+                onClick={() => handleSelect(p.seatNumbers[3], p)}
                 disabled={alreadyBooked(p.seatNumbers[3])}
               >
                 {p.seatNumbers[3].number}
@@ -210,7 +212,7 @@ const ReviewSeats = ({
                     ? "not-allowed"
                     : "pointer",
                 }}
-                onClick={() => handleSelect(p.seatNumbers[4])}
+                onClick={() => handleSelect(p.seatNumbers[4], p)}
                 disabled={alreadyBooked(p.seatNumbers[4])}
               >
                 {p.seatNumbers[4].number}
@@ -228,7 +230,7 @@ const ReviewSeats = ({
                     ? "not-allowed"
                     : "pointer",
                 }}
-                onClick={() => handleSelect(p.seatNumbers[5])}
+                onClick={() => handleSelect(p.seatNumbers[5], p)}
                 disabled={alreadyBooked(p.seatNumbers[5])}
               >
                 {p.seatNumbers[5].number}
@@ -246,7 +248,7 @@ const ReviewSeats = ({
                     ? "not-allowed"
                     : "pointer",
                 }}
-                onClick={() => handleSelect(p.seatNumbers[6])}
+                onClick={() => handleSelect(p.seatNumbers[6], p)}
                 disabled={alreadyBooked(p.seatNumbers[6])}
               >
                 {p.seatNumbers[6].number}
@@ -266,7 +268,7 @@ const ReviewSeats = ({
                     ? "not-allowed"
                     : "pointer",
                 }}
-                onClick={() => handleSelect(p.seatNumbers[7])}
+                onClick={() => handleSelect(p.seatNumbers[7], p)}
                 disabled={alreadyBooked(p.seatNumbers[7])}
               >
                 {p.seatNumbers[7].number}
@@ -284,7 +286,7 @@ const ReviewSeats = ({
                     ? "not-allowed"
                     : "pointer",
                 }}
-                onClick={() => handleSelect(p.seatNumbers[8])}
+                onClick={() => handleSelect(p.seatNumbers[8], p)}
                 disabled={alreadyBooked(p.seatNumbers[8])}
               >
                 {p.seatNumbers[8].number}
@@ -302,7 +304,7 @@ const ReviewSeats = ({
                     ? "not-allowed"
                     : "pointer",
                 }}
-                onClick={() => handleSelect(p.seatNumbers[9])}
+                onClick={() => handleSelect(p.seatNumbers[9], p)}
                 disabled={alreadyBooked(p.seatNumbers[9])}
               >
                 {p.seatNumbers[9].number}

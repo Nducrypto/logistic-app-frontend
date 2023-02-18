@@ -8,6 +8,7 @@ import {
 
 const Locations = () => {
   const { location } = useSelector((state) => state.locations);
+  // console.log(location);
   const dispatch = useDispatch();
 
   return (
@@ -23,20 +24,26 @@ const Locations = () => {
             </button>
             {p?.seatNumbers?.map((item) => (
               <div key={item._id}>
-                <>{item.unavailableDates}</>
-                <button
-                  onClick={() => {
-                    dispatch(
-                      handleDeleteunavDate(
-                        p._id,
-                        item._id,
-                        item.unavailableDates
-                      )
-                    );
-                  }}
+                <>
+                  {item.unavailableDates.map((i) => (
+                    <div key={i}>
+                      {i}
+
+                      <button
+                        onClick={() => {
+                          dispatch(handleDeleteunavDate(p._id, item._id, i));
+                        }}
+                      >
+                        hey
+                      </button>
+                    </div>
+                  ))}
+                </>
+                {/* <button
+                 
                 >
                   delete
-                </button>
+                </button> */}
               </div>
             ))}
           </div>

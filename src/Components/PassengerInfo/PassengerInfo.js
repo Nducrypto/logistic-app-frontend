@@ -17,7 +17,7 @@ const PassengerInfo = () => {
   const departureTerminal = location.state.departureTerminal;
   const arrivalTerminal = location.state.arrivalTerminal;
   const bookedSeat = location.state.bookedSeat;
-
+  const vehicleId = location.state.vehicleId;
   const navigate = useNavigate();
   const { user } = useAuthContext();
   const creator = user?.result._id;
@@ -40,6 +40,7 @@ const PassengerInfo = () => {
         arrivalTerminal,
         selectedSeats,
         bookedSeat,
+        vehicleId,
         creator,
         totalPrice: totalPrice(),
         ...form,

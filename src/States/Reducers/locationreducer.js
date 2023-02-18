@@ -20,6 +20,22 @@ const locations = (locations = { location: [], isError: false }, action) => {
         location: locations.location.filter((t) => t._id !== action.payload),
       };
 
+    case "DELETE_UNAVAILABLEDATES":
+      const findId = locations.location.find(
+        (p) => p._id === action.payload.id
+      );
+      const findSeatNumber = findId.seatNumbers.find(
+        (p) => p._id === action.payload.seatNumberId
+      );
+      const filterDate = findSeatNumber.unavailableDates.splice(
+        (item) => item === action.payload.unavailableDates
+      );
+
+      return {
+        ...locations,
+        filterDate,
+      };
+
     default:
       return locations;
   }

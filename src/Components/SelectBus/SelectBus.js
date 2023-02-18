@@ -26,6 +26,7 @@ const SelectBus = () => {
     setSelectedSeats,
     bookedSeat,
     setBookedSeat,
+    setVehicleId,
   } = useStateContext();
 
   const location = useLocation();
@@ -59,7 +60,9 @@ const SelectBus = () => {
     return isFound;
   };
 
-  const handleSelect = (item) => {
+  const handleSelect = (item, locationId) => {
+    setVehicleId(locationId._id);
+
     const checkId = selectedSeats.find((p) => p === item._id);
     setSelectedSeats(
       checkId
@@ -71,7 +74,7 @@ const SelectBus = () => {
     setBookedSeat(
       !checkNumber
         ? [...bookedSeat, item.number]
-        : bookedSeat.filter((p) => p !== item.number)
+        : bookedSeat.filter((p) => p.seatId !== item.number)
     );
 
     if (selectedSeats.length >= Number(adults)) {

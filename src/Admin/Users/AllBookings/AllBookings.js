@@ -39,22 +39,32 @@ const AllBookings = () => {
                 <div>{p.departureTerminal}</div>
                 <div>{p.arrivalTerminal}</div>
                 <div>{p.price}</div>
+                <div>{p.date}</div>
                 <div>phonenumber :{p.phoneNumber}</div>
 
                 <div style={{ display: "flex", gap: "1rem" }}>
                   <>bookeddSeat</>
                   <div style={{ display: "flex" }}>
-                    {p.bookedSeat.map((p, i) => (
-                      <div key={i}>
-                        <div>{p},</div>
-                      </div>
+                    {p.bookedSeat.join(",")}
+                  </div>
+                  <>selectedSeats</>
+                  <div style={{ display: "flex" }}>
+                    {p.selectedSeats.map((seatId) => (
+                      <span key={seatId}>{seatId}</span>
                     ))}
                   </div>
                 </div>
                 <div>nextofkinname :{p.nextOfKinName}</div>
                 <div>nextofkinnumber :{p.nextOfKinNumber}</div>
                 <button
-                  onClick={() => dispatch(deletePassengerBookings(p._id))}
+                  onClick={() =>
+                    dispatch(
+                      deletePassengerBookings(
+                        p._id,
+                        p.selectedSeats.map((p) => p)
+                      )
+                    )
+                  }
                 >
                   delete
                 </button>

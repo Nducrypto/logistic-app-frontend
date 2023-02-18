@@ -23,9 +23,9 @@ export const createPassengerBooking = (booking) => async (dispatch) => {
 };
 
 export const deletePassengerBookings = (id) => async (dispatch) => {
+  console.log(id);
   try {
     await api.deletePassengerBookings(id);
-
     dispatch({ type: "DELETE_PASSENGER_BOOKING", payload: id });
   } catch (err) {
     dispatch({ type: "SET_ERROR", payload: err.response.data.message });

@@ -31,16 +31,18 @@ export const deleteLocations = (id) => async (dispatch) => {
   }
 };
 export const handleDeleteunavDate =
-  (id, SeatNumberId, unavailableDates) => async (dispatch) => {
-    console.log(SeatNumberId);
+  (id, seatNumberId, unavailableDates) => async (dispatch) => {
     try {
-      const { data } = await api.handleDeleteunavDate(
-        id,
-        SeatNumberId,
-        unavailableDates
-      );
+      await api.handleDeleteunavDate(id, seatNumberId, unavailableDates);
 
-      dispatch({ type: "DELETE_UNAVAILABLEDATES", payload: data });
+      dispatch({
+        type: "DELETE_UNAVAILABLEDATES",
+        payload: {
+          id,
+          seatNumberId,
+          unavailableDates,
+        },
+      });
     } catch (err) {
       // dispatch({ type: "SET_ERROR", payload: err.response.data.message });
       // console.log(err.response.data.message);

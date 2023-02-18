@@ -22,7 +22,8 @@ export const ContextProvider = ({ children }) => {
   const [form, setForm] = useState(initialState);
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [bookedSeat, setBookedSeat] = useState([]);
-
+  const [vehicleId, setVehicleId] = useState("");
+  console.log(vehicleId);
   return (
     <stateContext.Provider
       value={{
@@ -52,6 +53,8 @@ export const ContextProvider = ({ children }) => {
         setSelectedSeats,
         bookedSeat,
         setBookedSeat,
+        vehicleId,
+        setVehicleId,
       }}
     >
       {children}
