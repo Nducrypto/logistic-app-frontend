@@ -1,9 +1,32 @@
 import React from "react";
-import { Button, Grid, Paper, Typography, TextField } from "@mui/material";
+import {
+  Button,
+  Grid,
+  Paper,
+  Typography,
+  TextField,
+  DialogTitle,
+  DialogContentText,
+  DialogContent,
+  DialogActions,
+  Dialog,
+} from "@mui/material";
+import { useStateContext } from "../../States/Contexts/ContextProvider";
 
 const Subscribe = () => {
+  const { section2Ref } = useStateContext();
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
-    <div style={{ padding: "0rem 1rem 0rem 1rem" }}>
+    <div style={{ padding: "0rem 1rem 0rem 1rem" }} ref={section2Ref}>
       <Paper>
         <Grid
           alignItems="center"
@@ -25,25 +48,44 @@ const Subscribe = () => {
             </Typography>
           </Grid>
 
-          <Grid item md={6} xs={11} sm={6} lg={6}>
-            <TextField
-              sx={{
-                width: { xs: "14.6rem", md: "19rem", sm: "16rem", lg: "30rem" },
-              }}
-              color="primary"
-              label="email"
-            />
-            <Button
-              sx={{
-                textTransform: "lowercase",
-                marginTop: "0.5rem",
-                backgroundColor: "red",
-                color: "white",
-              }}
-            >
-              Subscribe
-            </Button>
-          </Grid>
+          <Button
+            // variant="outlined"
+            onClick={handleClickOpen}
+            sx={{
+              mt: "1rem",
+              textTransform: "lowercase",
+              width: "20%",
+              backgroundColor: "red",
+              color: "white",
+              "&:hover": {
+                backgroundColor: "green",
+              },
+            }}
+          >
+            Subscribe
+          </Button>
+          <Dialog open={open}>
+            <DialogTitle>Subscribe</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                To subscribe to this website, please enter your email address
+                here. We will send updates occasionally.
+              </DialogContentText>
+              <TextField
+                autoFocus
+                margin="dense"
+                id="name"
+                label="Email Address"
+                type="email"
+                fullWidth
+                variant="standard"
+              />
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose}>Cancel</Button>
+              <Button onClick={handleClose}>Subscribe</Button>
+            </DialogActions>
+          </Dialog>
         </Grid>
       </Paper>
     </div>

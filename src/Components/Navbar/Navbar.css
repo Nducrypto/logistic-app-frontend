@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: red;
+  /* background-color: red; */
 }
 
 .Navbar > .nav-logo {
@@ -12,6 +12,7 @@
   font-size: 21px;
   margin: 15px;
   color: #ffffff;
+  
 }
 
 .Navbar > .nav-items > a {
@@ -52,7 +53,6 @@
     /* position: fixed; */
     position: absolute;
     top: 0;
-  background-color: red;
     width: 100vw;
 
   }
@@ -61,8 +61,6 @@
     top: 60px;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    /* flex-direction: row; */
-  background-color: red;
     left: 0;
     width: 100vw;
     height: 37vh;

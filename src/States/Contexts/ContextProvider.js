@@ -1,4 +1,6 @@
 import React, { createContext, useContext, useState } from "react";
+import { useInView } from "react-intersection-observer";
+
 import FormatDate from "../../Utils/FormatDate";
 const stateContext = createContext();
 
@@ -23,7 +25,10 @@ export const ContextProvider = ({ children }) => {
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [bookedSeat, setBookedSeat] = useState([]);
   const [vehicleId, setVehicleId] = useState("");
-  console.log(vehicleId);
+
+  const [section1Ref, section1InView] = useInView({ threshold: 0.5 });
+  const [section2Ref, section2InView] = useInView({ threshold: 0.5 });
+
   return (
     <stateContext.Provider
       value={{
@@ -55,6 +60,10 @@ export const ContextProvider = ({ children }) => {
         setBookedSeat,
         vehicleId,
         setVehicleId,
+        section1Ref,
+        section1InView,
+        section2Ref,
+        section2InView,
       }}
     >
       {children}

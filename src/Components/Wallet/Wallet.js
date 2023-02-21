@@ -3,10 +3,28 @@ import React from "react";
 import busystreet from "../../assets/busystreet.jpg";
 import card from "../../assets/card.jpg";
 import "./Wallet.css";
+import { motion, useAnimation, useInView } from "framer-motion";
+import { useEffect, useRef } from "react";
 
 const Enjoy = () => {
+  // const { section2Ref } = useStateContext();
+  const squareVariants = {
+    visible: { opacity: 1, scale: 1, transition: { duration: 2 } },
+    hidden: { opacity: 0, scale: 0 },
+  };
+
+  const controls = useAnimation();
+  const ref = useRef(null);
+  const inView = useInView(ref);
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
+
   return (
-    <div style={{ marginBottom: "4rem" }}>
+    <motion.div ref={ref} style={{ marginBottom: "4rem" }}>
       <Grid
         alignItems="center"
         justifyContent="center"
@@ -26,34 +44,40 @@ const Enjoy = () => {
             color: "black",
           }}
         >
-          <Typography
-            variant="h4"
-            sx={{
-              marginTop: "6rem",
-              fontWeight: "700",
-            }}
+          <motion.div
+            animate={controls}
+            initial="hidden"
+            variants={squareVariants}
           >
-            Enjoy the <span>M&E Motors Appvantage</span>
-          </Typography>
-          <Typography
-            variant="h4"
-            sx={{
-              marginTop: "1rem",
-              fontWeight: "700",
-            }}
-          >
-            Move Freely, Do Easily
-          </Typography>
-          <Typography
-            paragraph
-            sx={{
-              marginTop: "1rem",
-              fontWeight: "700",
-            }}
-          >
-            It is all you need in one. Book bus tickets, hire a <br />
-            vehicle and pay bills.
-          </Typography>
+            <Typography
+              variant="h4"
+              sx={{
+                marginTop: "6rem",
+                fontWeight: "700",
+              }}
+            >
+              Enjoy the <span>M&E Motors Appvantage</span>
+            </Typography>
+            <Typography
+              variant="h4"
+              sx={{
+                marginTop: "1rem",
+                fontWeight: "700",
+              }}
+            >
+              Move Freely, Do Easily
+            </Typography>
+            <Typography
+              paragraph
+              sx={{
+                marginTop: "1rem",
+                fontWeight: "700",
+              }}
+            >
+              It is all you need in one. Book bus tickets, hire a <br />
+              vehicle and pay bills.
+            </Typography>
+          </motion.div>
         </Grid>
         <Grid
           item
@@ -129,7 +153,7 @@ const Enjoy = () => {
           <img alt="" src={card} className="image" />
         </Grid>
       </Grid>
-    </div>
+    </motion.div>
   );
 };
 

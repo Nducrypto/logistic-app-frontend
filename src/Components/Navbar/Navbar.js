@@ -3,10 +3,13 @@ import React, { useState } from "react";
 import "./Navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import LogoutPrompt from "./LogoutPrompt";
+import { useStateContext } from "../../States/Contexts/ContextProvider";
 
 import { useAuthContext } from "../../States/Contexts/AuthContext";
 
 const Navbar = () => {
+  const { section2InView } = useStateContext();
+
   const [isOpen, setIsOpen] = useState(false);
   const [prompt, setPrompt] = useState(false);
 
@@ -19,8 +22,18 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar sx={{ padding: "0rem 2rem 0 0", backgroundColor: "red" }}>
-      <div className="Navbar">
+    <AppBar
+      sx={{
+        padding: "0rem 2rem 0 0",
+        backgroundColor: section2InView ? "red" : "black",
+      }}
+    >
+      <div
+        className="Navbar"
+        style={{
+          backgroundColor: section2InView ? "red" : "black",
+        }}
+      >
         <span className="nav-logo">
           {!prompt && (
             <a href="/" style={{ textDecoration: "none", color: "white" }}>
@@ -28,7 +41,10 @@ const Navbar = () => {
             </a>
           )}
         </span>
-        <div className={`nav-items ${isOpen && "open"}`}>
+        <div
+          className={`nav-items ${isOpen && "open"}`}
+          style={{ backgroundColor: section2InView ? "red" : "black" }}
+        >
           <>
             {user?.result && (
               <Link

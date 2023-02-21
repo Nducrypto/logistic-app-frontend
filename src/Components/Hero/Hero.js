@@ -3,6 +3,7 @@ import { Grid, Typography } from "@mui/material";
 import Form from "../Form/Form";
 import { useStateContext } from "../../States/Contexts/ContextProvider";
 import "./Hero.css";
+import { motion } from "framer-motion";
 
 const Heros = () => {
   const { mode } = useStateContext();
@@ -27,27 +28,41 @@ const Heros = () => {
             marginBottom: { xs: "3rem", md: "0.5" },
           }}
         >
-          <Typography
-            variant="h3"
-            sx={{
-              color: "white",
-              fontWeight: 700,
-              marginTop: {
-                md:
-                  mode === "booking status"
-                    ? "10rem"
-                    : mode === "hire a bus"
-                    ? "5rem"
-                    : "-7rem",
-              },
-            }}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 2 }}
           >
-            The modern way to <br /> commute across cities
-            <Typography sx={{ marginTop: "1rem", fontSize: "1.5rem" }}>
-              MIKELLE & EBUBE MOTORS is an African technology powered company,
-              providing seamless mobility services to commuters across Africa
+            <Typography
+              // variant="h3"
+              sx={{
+                textAlign: "center",
+                fontSize: { xs: "1.7rem", sm: "2.3rem", md: "3rem" },
+                color: "white",
+                fontWeight: 600,
+                marginTop: {
+                  md:
+                    mode === "booking status"
+                      ? "10rem"
+                      : mode === "hire a bus"
+                      ? "5rem"
+                      : "-7rem",
+                },
+              }}
+            >
+              The modern way to <br />
+              <span style={{ color: "orange" }}>commute across cities</span>
+              <Typography
+                sx={{
+                  marginTop: "1rem",
+                  fontSize: { xs: "1.2rem", sm: "1.5rem", md: "1.5rem" },
+                }}
+              >
+                MIKELLE & EBUBE MOTORS is an African technology powered company,
+                providing seamless mobility services to commuters across Africa
+              </Typography>
             </Typography>
-          </Typography>
+          </motion.div>
         </Grid>
 
         {/* FORM GRID  */}

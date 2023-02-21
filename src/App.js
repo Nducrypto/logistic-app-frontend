@@ -47,6 +47,7 @@ const App = () => {
   return (
     <div>
       <ScrollToTop />
+
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -128,6 +129,7 @@ const App = () => {
         />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
+
       <Footer />
     </div>
   );
