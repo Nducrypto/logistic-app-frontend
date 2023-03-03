@@ -1,6 +1,5 @@
 import React from "react";
 import { Card, Grid, Typography, CardContent, Button } from "@mui/material";
-import truck from "../../assets/truck.jpg";
 import { useStateContext } from "../../States/Contexts/ContextProvider";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { useEffect, useRef } from "react";
@@ -113,7 +112,7 @@ const Earnin = () => {
                 }}
               >
                 <img
-                  src={truck}
+                  src="https://images.unsplash.com/photo-1559297434-fae8a1916a79?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzF8fHRydWNrfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
                   style={{
                     height: "100%",
                     width: "100%",

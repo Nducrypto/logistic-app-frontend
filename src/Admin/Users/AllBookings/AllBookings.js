@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deletePassengerBookings } from "../../../States/Action/PassengerActions";
 import { CircularProgress } from "@mui/material";
 import { Subscribe } from "../../../Components";
+import moment from "moment";
 
 const AllBookings = () => {
   const { passenger, loadingPassenger, isError } = useSelector(
@@ -38,32 +39,38 @@ const AllBookings = () => {
               >
                 <div>{p.departureTerminal}</div>
                 <div>{p.arrivalTerminal}</div>
-                <div>{p.price}</div>
-                <div>{p.date}</div>
+                <div>FullName : {p.fullName}</div>
+
+                <div>Email : {p.email}</div>
+
+                <div>
+                  Total Amount : &#8358;{" "}
+                  {Intl.NumberFormat().format(p.totalPrice)}
+                </div>
+                <div>BookingCode : {p.bookingCode}</div>
+
+                <div>{moment(p.date).format("dddd, MMM Do YYYY")}</div>
                 <div>phonenumber :{p.phoneNumber}</div>
 
                 <div style={{ display: "flex", gap: "1rem" }}>
-                  <>bookeddSeat</>
+                  <div>bookedSeat</div>
                   <div style={{ display: "flex" }}>
-                    {p.bookedSeat.join(",")}
+                    {p.bookedSeat.join(" , ")}
                   </div>
-                  <>selectedSeats</>
+                  {/* <>selectedSeats</>
                   <div style={{ display: "flex" }}>
                     {p.selectedSeats.map((seatId) => (
                       <span key={seatId}>{seatId}</span>
                     ))}
-                  </div>
+                  </div>  */}
                 </div>
                 <div>nextofkinname :{p.nextOfKinName}</div>
                 <div>nextofkinnumber :{p.nextOfKinNumber}</div>
+                <div>Adults : {p.adults}</div>
+
                 <button
                   onClick={() =>
-                    dispatch(
-                      deletePassengerBookings(
-                        p._id,
-                        p.selectedSeats.map((p) => p)
-                      )
-                    )
+                    dispatch(deletePassengerBookings(p._id, p.selectedSeats))
                   }
                 >
                   delete

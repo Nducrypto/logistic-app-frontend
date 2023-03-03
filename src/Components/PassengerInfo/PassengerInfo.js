@@ -7,9 +7,11 @@ import { createPassengerBooking } from "../../States/Action/PassengerActions";
 import { useDispatch } from "react-redux";
 import { useAuthContext } from "../../States/Contexts/AuthContext";
 import Subscribe from "../Subscribe/Subscribe";
+import "./passengerInfo.css";
 
 const PassengerInfo = () => {
   const { form, setForm } = useStateContext();
+
   const location = useLocation();
   const selectedSeats = location.state.selectedSeats;
   const date = location.state.date;
@@ -18,18 +20,16 @@ const PassengerInfo = () => {
   const arrivalTerminal = location.state.arrivalTerminal;
   const bookedSeat = location.state.bookedSeat;
   const vehicleId = location.state.vehicleId;
+  const price = location.state.price;
+
   const navigate = useNavigate();
   const { user } = useAuthContext();
   const creator = user?.result._id;
 
-  const { API, data } = useFetch(
+  const { API } = useFetch(
     `/page?departureTerminal=${departureTerminal}&arrivalTerminal=${arrivalTerminal}`
   );
   const dispatch = useDispatch();
-
-  const totalPrice = (p) => {
-    return p * adults;
-  };
 
   const handleSubmit = () => {
     dispatch(
@@ -42,7 +42,8 @@ const PassengerInfo = () => {
         bookedSeat,
         vehicleId,
         creator,
-        totalPrice: totalPrice(),
+        totalPrice: price * adults,
+        bookingCode: `mem-${Math.ceil(Math.random() * 100000)}`,
         ...form,
       })
     );
@@ -196,113 +197,54 @@ const PassengerInfo = () => {
               >
                 Trip Summary
               </Typography>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  marginTop: "1rem",
-                }}
-              >
+              <div className="travelDetail">
                 <div>from</div>
                 <div>{departureTerminal}</div>
               </div>
 
               {/* ===== ARRIVAL TERMINAL=== */}
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  marginTop: "1rem",
-                }}
-              >
+              <div className="travelDetail">
                 <div>To</div>
                 <div>{arrivalTerminal}</div>
               </div>
               {/* ====== DATE===== */}
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  marginTop: "1rem",
-                }}
-              >
+              <div className="travelDetail">
                 <div>date</div>
                 <div>{date}</div>
               </div>
 
               {/* ===== TIME== */}
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  marginTop: "1rem",
-                }}
-              >
+              <div className="travelDetail">
                 <div>Time</div>
                 <div>07:45AM</div>
               </div>
 
               {/* ====ADULTS=== */}
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  marginTop: "1rem",
-                }}
-              >
+              <div className="travelDetail">
                 <div>Adult(s)</div>
                 <div>{adults}</div>
               </div>
 
               {/* ====SEAT NUMBERS== */}
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  marginTop: "1rem",
-                }}
-              >
+              <div className="travelDetail">
                 <div>seatNumber(s)</div>
                 <div style={{ display: "flex" }}>{bookedSeat.join(",")}</div>
               </div>
 
               {/* =====PRICE==== */}
-              {data.map((p) => (
-                <div key={p._id}>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                      marginTop: "1rem",
-                    }}
-                  >
-                    <div>Price</div>
-                    <div>&#8358; {Intl.NumberFormat().format(p.price)}</div>
-                  </div>
-                  {/* ====== TOTAL AMOUNT==== */}
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                      marginTop: "1rem",
-                    }}
-                  >
-                    <div>Total Amount</div>
-                    {/* <div>${handleTotal(p.price)}</div> */}
-                    <div>
-                      ${Intl.NumberFormat().format(totalPrice(p.price))}
-                    </div>
+              <div>
+                <div className="travelDetail">
+                  <div>Price</div>
+                  <div>&#8358; {Intl.NumberFormat().format(price)}</div>
+                </div>
+                {/* ====== TOTAL AMOUNT==== */}
+                <div className="travelDetail">
+                  <div>Total Amount</div>
+                  <div>
+                    &#8358; {Intl.NumberFormat().format(price * adults)}
                   </div>
                 </div>
-              ))}
+              </div>
 
               <div style={{ marginTop: "2rem" }}>
                 <Button

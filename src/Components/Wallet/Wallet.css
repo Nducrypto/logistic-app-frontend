@@ -12,6 +12,37 @@ span{
     color: red;
 }
 
+.container-slider {
+    max-width: 700px;
+    height: 340px;
+ 
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .slide {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0;
+
+    transition: opacity ease-in-out 0.9s;
+   
+  }
+
+  .active-anim {
+    opacity: 1;
+  
+  }
+  
+   .imageSlide {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+ 
 @media screen and (max-width: 850px) {
     .image {
         height: 50%;
@@ -38,7 +69,10 @@ span{
        box-shadow : 1rem 1.3rem 1.2rem 0.4rem blue;
        margin-left: 2.5rem;
     }  
-   
+    .container-slider {
+      max-width: 500px;
+      height: 320px;
+      }
 }
 @media screen and (max-width: 420px) {
     .image {

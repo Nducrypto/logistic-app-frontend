@@ -38,6 +38,7 @@ const ReviewSeats = ({
         adults,
         bookedSeat,
         vehicleId,
+        price: p.price,
       },
     });
   };

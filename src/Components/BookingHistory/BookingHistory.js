@@ -5,7 +5,7 @@ import moment from "moment";
 import { Container } from "@mui/system";
 import { useSelector } from "react-redux";
 import Subscribe from "../Subscribe/Subscribe";
-
+import "./bookingHistory.css";
 const BookingHistory = () => {
   const { passenger } = useSelector((state) => state.passengers);
   const user = JSON.parse(localStorage.getItem("profile"));
@@ -48,75 +48,33 @@ const BookingHistory = () => {
                   }}
                   elevation={12}
                 >
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                      marginTop: "1rem",
-                    }}
-                  >
-                    <div
-                      style={{
-                        fontWeight: "600",
-                      }}
-                    >
-                      {p.departureTerminal}
-                    </div>
+                  <div className="historyCon">
+                    <div>{p.departureTerminal}</div>
                     <div> {p.arrivalTerminal}</div>
                   </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                      marginTop: "1rem",
-                    }}
-                  >
-                    <div>{moment(p.date).format("dddd, MMMM Do YYYY")}</div>
-                  </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                      marginTop: "1rem",
-                    }}
-                  >
+
+                  <div className="historyCon">
                     <div>Phone</div>
                     <div>{p.phoneNumber}</div>
                   </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                      marginTop: "1rem",
-                    }}
-                  >
+                  <div className="historyCon">
                     <div>Next Of Kin</div>
                     <div>{p.nextOfKinName}</div>
                   </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                      marginTop: "1rem",
-                    }}
-                  >
-                    <div>Number</div>
-                    <div>{p.nextOfKinNumber}</div>
+                  <div className="historyCon">
+                    <div>Amount</div>
+                    <div>&#8358;{Intl.NumberFormat().format(p.totalPrice)}</div>
+                  </div>
+                  <div className="historyCon">
+                    <div>Booking Code</div>
+                    <div> {p.bookingCode}</div>
+                  </div>
+                  <div className="historyCon">
+                    <div>Date</div>
+                    <div>{moment(p.date).format("dddd, MMM Do YYYY")}</div>
                   </div>
 
-                  <div
-                    style={{
-                      display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                      marginTop: "1rem",
-                    }}
-                  >
+                  <div className="historyCon">
                     <div>seatNumber(s)</div>
                     <div style={{ display: "flex" }}>
                       {p.bookedSeat.join(",")}

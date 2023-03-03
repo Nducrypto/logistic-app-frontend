@@ -6,13 +6,8 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 
 const Footer = () => {
   return (
-    <div>
-      <Grid
-        container
-        justifyContent="center"
-        alignItems="center"
-        sx={{ marginBottom: "5rem", padding: "0 0 0 3rem" }}
-      >
+    <div style={{ padding: "0 0 3rem 3rem", marginTop: "3rem" }}>
+      <Grid container justifyContent="center" alignItems="center">
         <Grid item xs={12} md={12} sm={12} lg={3}>
           <Typography
             sx={{

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Grid,
   TextField,
@@ -15,8 +15,13 @@ import { useStateContext } from "../../States/Contexts/ContextProvider";
 import { useNavigate } from "react-router-dom";
 import FormatDate from "../../Utils/FormatDate";
 import { useAuthContext } from "../../States/Contexts/AuthContext";
+import { useSelector } from "react-redux";
+import CheckStatus from "./CheckStatus";
 
 const Form = () => {
+  const [checkCode, setCheckCode] = useState("");
+  const [isClicked, setIsClicked] = useState(false);
+  console.log(checkCode);
   const {
     mode,
     setMode,
@@ -30,8 +35,19 @@ const Form = () => {
     setAdults,
   } = useStateContext();
   const { user } = useAuthContext();
+  const { passenger } = useSelector((state) => state.passengers);
 
   const navigate = useNavigate();
+
+  // const minute = 1000 * 60;
+  // const hour = minute * 60;
+  // const day = hour * 24;
+  // const year = day * 365;
+
+  // // Divide Time with a year
+  // const d = new Date();
+  // let years = Math.round(d.getTime());
+  // console.log(years);
 
   //  HANDLE SUBMIT
   const handleSubmit = () => {
@@ -50,8 +66,20 @@ const Form = () => {
     (p) => p.location !== departureTerminal
   );
 
+  const checkStatus = passenger.filter(
+    (item) => item.bookingCode === checkCode
+  );
+
   return (
     <div>
+      {isClicked && (
+        <CheckStatus
+          checkStatus={checkStatus}
+          isClicked={isClicked}
+          setIsClicked={setIsClicked}
+        />
+      )}
+
       <Grid
         className="hey"
         container
@@ -254,10 +282,13 @@ const Form = () => {
               )}
               {mode === "booking status" && (
                 <div style={{ marginTop: "1rem" }}>
-                  <TextField fullWidth label="Check booking status" />
+                  <TextField
+                    fullWidth
+                    onChange={(e) => setCheckCode(e.target.value)}
+                    label="Check booking status"
+                  />
                 </div>
               )}
-
               {mode === "round trip" && (
                 <div>
                   <div style={{ marginTop: "3rem" }}>
@@ -325,7 +356,7 @@ const Form = () => {
               )}
 
               {/* PROCEED    BUTTON */}
-              {user?.result ? (
+              {user?.result && mode !== "booking status" ? (
                 <Button
                   variant="contained"
                   fullWidth
@@ -344,6 +375,19 @@ const Form = () => {
                   }}
                 >
                   Proceed
+                </Button>
+              ) : mode === "booking status" ? (
+                <Button
+                  variant="contained"
+                  fullWidth
+                  onClick={() => setIsClicked(!isClicked)}
+                  sx={{
+                    // textTransform: "lowercase",
+                    marginTop: ".5rem",
+                    padding: "-2rem",
+                  }}
+                >
+                  Check Status
                 </Button>
               ) : (
                 <Button
