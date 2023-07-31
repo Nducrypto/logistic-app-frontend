@@ -103,7 +103,12 @@ const Enjoy = () => {
                   currentSlide === index + 1 ? "slide active-anim" : "slide"
                 }
               >
-                <img alt="" src={item.img} className="imageSlide" />
+                <img
+                  alt=""
+                  loading="lazy"
+                  src={item.img}
+                  className="imageSlide"
+                />
               </div>
             ))}
           </div>
