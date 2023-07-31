@@ -8,7 +8,7 @@ import { useStateContext } from "../../States/Contexts/ContextProvider";
 
 const ReviewSeats = ({
   p,
-  handleSelect,
+  handleSeatSelection,
   alreadyBooked,
   departureTerminal,
   date,
@@ -85,33 +85,16 @@ const ReviewSeats = ({
           >
             <div>
               <div className="seats-availabilties">Booked Seat</div>
-              <button
-                style={{
-                  backgroundColor: "grey",
-                  width: "3rem",
-                  height: "1rem",
-                }}
-              />
+              <div className="booked-seat"></div>
             </div>
             <div>
               <div className="seats-availabilties">Available Seat</div>
-              <button
-                style={{
-                  backgroundColor: "teal",
-                  width: "3rem",
-                  height: "1rem",
-                }}
-              />
+              <div className="available-seat"></div>
             </div>
             <div>
               <div className="seats-availabilties">Selected Seat</div>
-              <button
-                style={{
-                  backgroundColor: "orange",
-                  width: "3rem",
-                  height: "1rem",
-                }}
-              />
+
+              <div className="selected-seat"></div>
             </div>
           </div>
           <div className="seatContainer">
@@ -136,7 +119,7 @@ const ReviewSeats = ({
                     ? "not-allowed"
                     : "pointer",
                 }}
-                onClick={() => handleSelect(p.seatNumbers[0], p)}
+                onClick={() => handleSeatSelection(p.seatNumbers[0], p)}
                 disabled={alreadyBooked(p.seatNumbers[0])}
               >
                 {p.seatNumbers[0].number}
@@ -156,7 +139,7 @@ const ReviewSeats = ({
                     ? "not-allowed"
                     : "pointer",
                 }}
-                onClick={() => handleSelect(p.seatNumbers[1], p)}
+                onClick={() => handleSeatSelection(p.seatNumbers[1], p)}
                 disabled={alreadyBooked(p.seatNumbers[1])}
               >
                 {p.seatNumbers[1].number}
@@ -175,7 +158,7 @@ const ReviewSeats = ({
                     ? "not-allowed"
                     : "pointer",
                 }}
-                onClick={() => handleSelect(p.seatNumbers[2], p)}
+                onClick={() => handleSeatSelection(p.seatNumbers[2], p)}
                 disabled={alreadyBooked(p.seatNumbers[2])}
               >
                 {p.seatNumbers[2].number}
@@ -193,7 +176,7 @@ const ReviewSeats = ({
                     ? "not-allowed"
                     : "pointer",
                 }}
-                onClick={() => handleSelect(p.seatNumbers[3], p)}
+                onClick={() => handleSeatSelection(p.seatNumbers[3], p)}
                 disabled={alreadyBooked(p.seatNumbers[3])}
               >
                 {p.seatNumbers[3].number}
@@ -213,7 +196,7 @@ const ReviewSeats = ({
                     ? "not-allowed"
                     : "pointer",
                 }}
-                onClick={() => handleSelect(p.seatNumbers[4], p)}
+                onClick={() => handleSeatSelection(p.seatNumbers[4], p)}
                 disabled={alreadyBooked(p.seatNumbers[4])}
               >
                 {p.seatNumbers[4].number}
@@ -231,7 +214,7 @@ const ReviewSeats = ({
                     ? "not-allowed"
                     : "pointer",
                 }}
-                onClick={() => handleSelect(p.seatNumbers[5], p)}
+                onClick={() => handleSeatSelection(p.seatNumbers[5], p)}
                 disabled={alreadyBooked(p.seatNumbers[5])}
               >
                 {p.seatNumbers[5].number}
@@ -249,7 +232,7 @@ const ReviewSeats = ({
                     ? "not-allowed"
                     : "pointer",
                 }}
-                onClick={() => handleSelect(p.seatNumbers[6], p)}
+                onClick={() => handleSeatSelection(p.seatNumbers[6], p)}
                 disabled={alreadyBooked(p.seatNumbers[6])}
               >
                 {p.seatNumbers[6].number}
@@ -269,7 +252,7 @@ const ReviewSeats = ({
                     ? "not-allowed"
                     : "pointer",
                 }}
-                onClick={() => handleSelect(p.seatNumbers[7], p)}
+                onClick={() => handleSeatSelection(p.seatNumbers[7], p)}
                 disabled={alreadyBooked(p.seatNumbers[7])}
               >
                 {p.seatNumbers[7].number}
@@ -287,7 +270,7 @@ const ReviewSeats = ({
                     ? "not-allowed"
                     : "pointer",
                 }}
-                onClick={() => handleSelect(p.seatNumbers[8], p)}
+                onClick={() => handleSeatSelection(p.seatNumbers[8], p)}
                 disabled={alreadyBooked(p.seatNumbers[8])}
               >
                 {p.seatNumbers[8].number}
@@ -305,7 +288,7 @@ const ReviewSeats = ({
                     ? "not-allowed"
                     : "pointer",
                 }}
-                onClick={() => handleSelect(p.seatNumbers[9], p)}
+                onClick={() => handleSeatSelection(p.seatNumbers[9], p)}
                 disabled={alreadyBooked(p.seatNumbers[9])}
               >
                 {p.seatNumbers[9].number}

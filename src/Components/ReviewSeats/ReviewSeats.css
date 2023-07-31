@@ -42,6 +42,27 @@
   width: 100%;
   height: 2rem;
 }
+.booked-seat{
+  background-color: grey;
+border-radius: 1rem;
+  width: 3rem;
+  height: 1rem;
+  margin-top: 0.2rem;
+}
+.available-seat{
+  background-color: teal;
+  border-radius: 1rem;
+    width: 3rem;
+    height: 1rem; 
+    margin-top: 0.2rem;
+}
+.selected-seat{
+  background-color: orange;
+  border-radius: 1rem;
+    width: 3rem;
+    height: 1rem; 
+    margin-top: 0.2rem;
+}
 button{
   border-radius: 1rem;
 }

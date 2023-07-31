@@ -65,10 +65,54 @@ const Form = () => {
   const filteredLocation = places.filter(
     (p) => p.location !== departureTerminal
   );
+  // const filteredLocation = ()=>{
+  //   let firstIndex=0
+  //   let lastIndex=places.length-1
+  //   while (firstIndex<=lastIndex) {
+  //     let middleindex=Math.floor(places.length/2)
+  //     if (places[middleindex]===departureTerminal) {
+
+  //     }
+  //   }
+  // }
+
+  // const filteredLocation = () => {
+  //   let firstIndex = 0;
+  //   let lastIndex = places.length - 1;
+  //   let result = [];
+
+  //   while (firstIndex <= lastIndex) {
+  //     let middleIndex = Math.floor((firstIndex + lastIndex) / 2);
+
+  //     if (places[middleIndex] === departureTerminal) {
+  //       // Item found at middleIndex, exclude it from the result array
+  //       result = [
+  //         ...places.slice(0, middleIndex),
+  //         ...places.slice(middleIndex + 1)
+  //       ];
+  //       break;
+  //     } else if (places[middleIndex] < departureTerminal) {
+  //       // Item is in the right half of the array
+  //       firstIndex = middleIndex + 1;
+  //     } else {
+  //       // Item is in the left half of the array
+  //       lastIndex = middleIndex - 1;
+  //     }
+  //   }
+
+  //   return result;
+  // };
 
   const checkStatus = passenger.filter(
     (item) => item.bookingCode === checkCode
   );
+
+  const disable = Object.values({
+    date,
+    adults,
+    arrivalTerminal,
+    departureTerminal,
+  }).includes("");
 
   return (
     <div>
@@ -363,11 +407,7 @@ const Form = () => {
                   onClick={() => {
                     handleSubmit();
                   }}
-                  disabled={
-                    !departureTerminal || !arrivalTerminal || !adults || !date
-                      ? true
-                      : false
-                  }
+                  disabled={disable}
                   sx={{
                     textTransform: "lowercase",
                     marginTop: ".5rem",
@@ -380,9 +420,8 @@ const Form = () => {
                 <Button
                   variant="contained"
                   fullWidth
-                  onClick={() => setIsClicked(!isClicked)}
+                  onClick={() => setIsClicked((prev) => !prev)}
                   sx={{
-                    // textTransform: "lowercase",
                     marginTop: ".5rem",
                     padding: "-2rem",
                   }}

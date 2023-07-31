@@ -12,7 +12,9 @@ const BookingHistory = () => {
 
   const creator = user?.result._id;
 
-  const filter = passenger.filter((p) => p.creator === creator);
+  const filteredPassengers = passenger.filter(
+    (customer) => customer.creator === creator
+  );
 
   return (
     <div>
@@ -35,7 +37,7 @@ const BookingHistory = () => {
               gap: "1rem",
             }}
           >
-            {filter.map((p) => (
+            {filteredPassengers.map((p) => (
               <div key={p._id}>
                 <Paper
                   sx={{

@@ -49,16 +49,8 @@ const Footer = () => {
           >
             Terms
           </Typography>
-          <Typography sx={{ fontSize: "0.9rem" }}>
-            <a href="/" style={{ textDecoration: "none" }}>
-              Privacy Policy
-            </a>
-          </Typography>
-          <Typography>
-            <a href="/" style={{ textDecoration: "none" }}>
-              Terms & Conditions
-            </a>
-          </Typography>
+          <Typography sx={{ fontSize: "0.9rem" }}>Privacy Policy</Typography>
+          <Typography>Terms & Conditions</Typography>
         </Grid>
         <Grid
           item
@@ -105,7 +97,7 @@ const Footer = () => {
               target="_blank"
               rel="noreferrer"
             >
-              {<InstagramIcon />}
+              {<InstagramIcon style={{ color: "red" }} />}
             </a>
           </div>
         </Grid>

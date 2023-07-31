@@ -8,30 +8,32 @@ import {
 
 const Locations = () => {
   const { location } = useSelector((state) => state.locations);
-  // console.log(location);
+
   const dispatch = useDispatch();
 
   return (
     <div>
       <div style={{ marginTop: "6rem" }}>
-        {location.map((p) => (
-          <div key={p._id} style={{ marginTop: "2rem" }}>
-            <div>{p.departureTerminal}</div>
-            <>{p.arrivalTerminal}</>
-            <>{p.price}</>
-            <button onClick={() => dispatch(deleteLocations(p._id))}>
+        {location.map((bus) => (
+          <div key={bus._id} style={{ marginTop: "2rem" }}>
+            <div>{bus.departureTerminal}</div>
+            <>{bus.arrivalTerminal}</>
+            <>{bus.price}</>
+            <button onClick={() => dispatch(deleteLocations(bus._id))}>
               delete
             </button>
-            {p?.seatNumbers?.map((item) => (
-              <div key={item._id}>
+            {bus?.seatNumbers?.map((number) => (
+              <div key={number._id}>
                 <>
-                  {item.unavailableDates.map((i) => (
+                  {number.unavailableDates.map((i) => (
                     <div key={i}>
                       {i}
 
                       <button
                         onClick={() => {
-                          dispatch(handleDeleteunavDate(p._id, item._id, i));
+                          dispatch(
+                            handleDeleteunavDate(bus._id, number._id, i)
+                          );
                         }}
                       >
                         hey

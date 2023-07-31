@@ -6,10 +6,9 @@ import {
   CardMedia,
   CardContent,
   CircularProgress,
-  Paper,
 } from "@mui/material";
 import { useLocation } from "react-router-dom";
-import React from "react";
+
 import { useStateContext } from "../../States/Contexts/ContextProvider.js";
 import useFetch from "../../Hooks/useFetch.js";
 import moment from "moment";
@@ -24,7 +23,6 @@ const SelectBus = () => {
     setError,
     selectedSeats,
     setSelectedSeats,
-    bookedSeat,
     setBookedSeat,
     setVehicleId,
   } = useStateContext();
@@ -38,53 +36,64 @@ const SelectBus = () => {
     `/page?departureTerminal=${departureTerminal}&arrivalTerminal=${arrivalTerminal}`
   );
 
-  // ====mapped seatNumbers here===
-  const seatNumbers = data
-    ?.map((p) => p.seatNumbers?.map((i) => i.number))
-    .flat();
-
-  // ===mapped unavailableDates and compared it to user choosed date by filtering it and also Flatetend d different arrays to a single array==
-  const unavailableDates = data
-    ?.flatMap((p) =>
-      p.seatNumbers?.map((i) =>
-        i.unavailableDates?.filter((p) => p.includes(date))
+  const availableSeats = () => {
+    // Extract all unavailable dates for each seat and flatten the array
+    const allUnavailableDates = data.flatMap((item) =>
+      item.seatNumbers.flatMap(({ unavailableDates }) =>
+        unavailableDates.filter((isAvailable) => isAvailable.includes(date))
       )
-    )
-    .flat();
-
-  const availableSeats = seatNumbers.length - unavailableDates.length;
+    );
+    // Extract all seat numbers from the data
+    const allSeatNumbers = data.flatMap(({ seatNumbers }) =>
+      seatNumbers.flatMap(({ number }) => number)
+    );
+    // Calculate the number of available seats by subtracting unavailable seats from total seats
+    const availableSeatCount =
+      allSeatNumbers.length - allUnavailableDates.length;
+    return availableSeatCount;
+  };
 
   const alreadyBooked = (t) => {
-    const isFound = t.unavailableDates.some((p) => p.includes(date));
+    const isBooked = t.unavailableDates.some((p) => p.includes(date));
 
-    return isFound;
+    return isBooked;
   };
 
-  const handleSelect = (item, locationId) => {
-    setVehicleId(locationId._id);
+  // select desired seat
+  const handleSeatSelection = (item, locationId) => {
+    const { _id: locationIdValue } = locationId;
+    const { _id: itemId, number } = item;
 
-    const checkId = selectedSeats.find((p) => p === item._id);
-    setSelectedSeats(
-      checkId
-        ? selectedSeats.filter((id) => id !== item._id)
-        : [...selectedSeats, item._id]
-    );
-    const checkNumber = bookedSeat.find((p) => p === item.number);
-
-    setBookedSeat(
-      !checkNumber
-        ? [...bookedSeat, item.number]
-        : bookedSeat.filter((p) => p.seatId !== item.number)
-    );
-
-    if (selectedSeats.length >= Number(adults)) {
-      setError(true);
-      setSelectedSeats([]);
-      setBookedSeat([]);
-    } else {
-      return selectedSeats;
-    }
+    setVehicleId(locationIdValue);
+    updateSeatIds(itemId);
+    updateSeatNumber(number);
   };
+
+  const updateSeatIds = (itemId) => {
+    setSelectedSeats((prevSelectedSeats) => {
+      const checkId = prevSelectedSeats.indexOf(itemId);
+      const updatedArray = [...prevSelectedSeats];
+      checkId !== -1
+        ? updatedArray.splice(checkId, 1)
+        : updatedArray.push(itemId);
+      return updatedArray;
+    });
+  };
+
+  const updateSeatNumber = (seatNumber) => {
+    setBookedSeat((prevBookedSeats) => {
+      const checkNumber = prevBookedSeats.some((p) => p.seatId === seatNumber);
+      return checkNumber
+        ? prevBookedSeats.filter((p) => p.seatId !== seatNumber)
+        : [...prevBookedSeats, seatNumber];
+    });
+  };
+
+  if (selectedSeats.length > Number(adults)) {
+    setError(true);
+    setSelectedSeats([]);
+    setBookedSeat([]);
+  }
 
   return (
     <>
@@ -93,14 +102,6 @@ const SelectBus = () => {
           marginTop: "7rem",
         }}
       >
-        {/* ========= CUSTOMER DETAILS GRID CONTAINER==== */}
-        <Paper>
-          <Grid container alignItems="center" justifyContent="center">
-            {/* =======EMAIL===== */}
-          </Grid>
-        </Paper>
-
-        {/* ===========BOOKING DETAILS GRID CONTAINER =========== */}
         <Grid alignItems="center" justifyContent="center" container>
           <Typography
             sx={{
@@ -133,7 +134,8 @@ const SelectBus = () => {
                     component="img"
                     height="194"
                     src={gigbus}
-                    alt="Ndubuisi"
+                    alt=""
+                    loading="lazy"
                     sx={{
                       height: { md: "100%" },
                     }}
@@ -159,7 +161,7 @@ const SelectBus = () => {
                       {moment(date).format("MMMM Do YYYY")}
                     </Typography>
                     <Typography paragraph>
-                      Available Seats : {availableSeats}
+                      Available Seats : {availableSeats()}
                     </Typography>
                     <Typography paragraph>
                       {moment(date).format("dddd")} : 07:45am
@@ -197,7 +199,7 @@ const SelectBus = () => {
                 {open ? (
                   <ReviewSeats
                     p={p}
-                    handleSelect={handleSelect}
+                    handleSeatSelection={handleSeatSelection}
                     alreadyBooked={alreadyBooked}
                     departureTerminal={departureTerminal}
                     arrivalTerminal={arrivalTerminal}

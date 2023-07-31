@@ -3,6 +3,7 @@ import "./Wallet.css";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { sliderPics } from "./sliderPics";
+import CreditCard from "./CreditCard";
 
 const Enjoy = () => {
   const [currentSlide, setCurrentSlide] = useState(1);
@@ -147,25 +148,9 @@ const Enjoy = () => {
             <br /> on the mobile app.
           </Typography>
         </Grid>
-        <Grid
-          item
-          xs={12}
-          sm={6}
-          sx={{
-            backgroundColor: "white",
-            height: { md: "30rem", sm: "30rem" },
-            padding: {
-              md: "2rem 2rem 8rem 2rem",
-            },
-            margingBottom: "-6rem",
-          }}
-        >
-          <img
-            alt=""
-            src="https://images.unsplash.com/photo-1614787913553-8aa43d6fc7f5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTA1fHxjcmVkaXQlMjBjYXJkfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
-            className="image"
-          />
-        </Grid>
+        <div>
+          <CreditCard />
+        </div>
       </Grid>
     </motion.div>
   );
