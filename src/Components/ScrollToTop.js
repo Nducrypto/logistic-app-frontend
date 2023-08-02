@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-export const ScrollRestoration = () => {
+export default ScrollRestoration = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
