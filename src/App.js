@@ -22,7 +22,7 @@ import {
   BookingHistory,
   Profile,
 } from "./Components/index";
-import ScrollRestoration from "./Components/ScrollToTop";
+import ScrollRestoration from "./Components/ScrollRestoration";
 
 const App = () => {
   const dispatch = useDispatch();
