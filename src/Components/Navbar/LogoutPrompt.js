@@ -38,7 +38,7 @@ const LogoutPrompt = ({ setPrompt, logout, setIsOpen }) => {
               logout();
               setPrompt(false);
               setIsOpen(false);
-              navigate("/");
+              navigate("/auth");
             }}
           >
             logout

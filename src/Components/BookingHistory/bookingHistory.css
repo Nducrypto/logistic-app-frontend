@@ -1,6 +1,27 @@
+.booking-history-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    background-color: whitesmoke;
+    margin-top: 4rem;
+    padding: 2rem;
+}
+
 .historyCon{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-top: 1rem;
+    max-height: 10rem;
+    overflow: hidden;
+}
+
+@media (max-width: 768px) {
+
+.booking-history-container{
+    max-height: 40rem;
+    overflow: scroll;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+   
+}
 }

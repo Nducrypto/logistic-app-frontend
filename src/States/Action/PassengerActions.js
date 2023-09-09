@@ -13,14 +13,17 @@ export const getAllBookings = () => async (dispatch) => {
   }
 };
 
-export const createPassengerBooking = (booking) => async (dispatch) => {
-  try {
-    const { data } = await api.createPassengerBooking(booking);
-    dispatch({ type: "CREATE_PASSENGER_BOOKINGS", payload: data });
-  } catch (err) {
-    console.log(err.response.data.message);
-  }
-};
+export const createPassengerBooking =
+  (booking, navigate) => async (dispatch) => {
+    try {
+      const { data } = await api.createPassengerBooking(booking);
+      dispatch({ type: "CREATE_PASSENGER_BOOKINGS", payload: data });
+      navigate("/bookinghistory");
+      sessionStorage.clear("booking-info");
+    } catch (err) {
+      console.log(err.response.data.message);
+    }
+  };
 
 export const deletePassengerBookings = (id) => async (dispatch) => {
   console.log(id);
@@ -29,7 +32,6 @@ export const deletePassengerBookings = (id) => async (dispatch) => {
     dispatch({ type: "DELETE_PASSENGER_BOOKING", payload: id });
   } catch (err) {
     dispatch({ type: "SET_ERROR", payload: err.response.data.message });
-
     console.log(err.response.data.message);
   }
 };

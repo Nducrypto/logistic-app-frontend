@@ -16,6 +16,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import InputAuth from "./InputAuth";
 import { login, register } from "../../States/Action/AuthAction";
 import { useAuthContext } from "../../States/Contexts/AuthContext";
+import { useStateContext } from "../../States/Contexts/ContextProvider";
 
 const initialState = {
   firstName: "",
@@ -30,9 +31,8 @@ const SignUp = () => {
   const [isSignup, setIsSignup] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const [showPassword, setShowPassword] = useState(false);
-
+  const { previousRoute } = useStateContext();
   const { error, loading } = useAuthContext();
 
   const handleShowPassword = () => setShowPassword(!showPassword);
@@ -49,12 +49,11 @@ const SignUp = () => {
     e.preventDefault();
 
     if (isSignup) {
-      dispatch(register(formAuth, navigate));
+      dispatch(register(formAuth, navigate, previousRoute));
     } else {
-      dispatch(login(formAuth, navigate));
+      dispatch(login(formAuth, navigate, previousRoute));
     }
   };
-
   // HANDLECHANGE
   const handleChange = (e) =>
     setFormAuth({ ...formAuth, [e.target.id]: e.target.value });

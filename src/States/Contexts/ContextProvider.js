@@ -25,6 +25,9 @@ export const ContextProvider = ({ children }) => {
   const [selectedSeats, setSelectedSeats] = useState([]);
   const [bookedSeat, setBookedSeat] = useState([]);
   const [vehicleId, setVehicleId] = useState("");
+  const [previousRoute, setPreviousRoute] = useState(
+    sessionStorage.getItem("logistic-app-route") || "/"
+  );
 
   const [section1Ref, section1InView] = useInView({ threshold: 0.5 });
   const [section2Ref, section2InView] = useInView({ threshold: 0.5 });
@@ -42,7 +45,6 @@ export const ContextProvider = ({ children }) => {
         setAdults,
         mode,
         setMode,
-
         price,
         setPrice,
         seats,
@@ -64,6 +66,8 @@ export const ContextProvider = ({ children }) => {
         section1InView,
         section2Ref,
         section2InView,
+        previousRoute,
+        setPreviousRoute,
       }}
     >
       {children}

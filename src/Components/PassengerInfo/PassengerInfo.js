@@ -1,56 +1,91 @@
 import { Button, Grid, Typography, TextField, Paper } from "@mui/material";
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useFetch from "../../Hooks/useFetch";
 import { useStateContext } from "../../States/Contexts/ContextProvider";
 import { createPassengerBooking } from "../../States/Action/PassengerActions";
 import { useDispatch } from "react-redux";
 import { useAuthContext } from "../../States/Contexts/AuthContext";
 import Subscribe from "../Subscribe/Subscribe";
+import { PaystackButton } from "react-paystack";
+
 import "./passengerInfo.css";
 
 const PassengerInfo = () => {
   const { form, setForm } = useStateContext();
-
-  const location = useLocation();
-  const selectedSeats = location.state.selectedSeats;
-  const date = location.state.date;
-  const adults = location.state.adults;
-  const departureTerminal = location.state.departureTerminal;
-  const arrivalTerminal = location.state.arrivalTerminal;
-  const bookedSeat = location.state.bookedSeat;
-  const vehicleId = location.state.vehicleId;
-  const price = location.state.price;
+  const getBookingInfo = JSON.parse(sessionStorage.getItem("booking-info"));
+  const {
+    price,
+    vehicleId,
+    bookedSeat,
+    arrivalTerminal,
+    departureTerminal,
+    adults,
+    date,
+    selectedSeats,
+  } = getBookingInfo;
 
   const navigate = useNavigate();
   const { user } = useAuthContext();
   const creator = user?.result._id;
-
+  const isFormPropEmpty = Object.values(form).includes("");
   const { API } = useFetch(
     `/page?departureTerminal=${departureTerminal}&arrivalTerminal=${arrivalTerminal}`
   );
   const dispatch = useDispatch();
 
-  const handleSubmit = () => {
+  async function handlePaymentSuccess(reference) {
+    updateBookingHistory();
+    updateBookedSeatNumber();
+  }
+
+  function handlePaystackCloseAction() {}
+
+  let totalPrice = price * adults;
+
+  const paystackConfig = {
+    reference: new Date().getTime(),
+    email: user?.result?.email,
+    amount: totalPrice * 100,
+    publicKey: process.env.REACT_APP_PAYSTACK_TEST_PUBLIC_KEY,
+  };
+
+  const formattedTotalPrice = new Intl.NumberFormat("en-NG", {
+    style: "currency",
+    currency: "NGN",
+  }).format(totalPrice);
+
+  const text = `Checkout (${formattedTotalPrice})`;
+  const componentProps = {
+    ...paystackConfig,
+    text,
+    onSuccess: (reference) => handlePaymentSuccess(reference),
+    onClose: handlePaystackCloseAction,
+  };
+
+  const updateBookingHistory = () => {
     dispatch(
-      createPassengerBooking({
-        date,
-        adults,
-        departureTerminal,
-        arrivalTerminal,
-        selectedSeats,
-        bookedSeat,
-        vehicleId,
-        creator,
-        totalPrice: price * adults,
-        bookingCode: `mem-${Math.ceil(Math.random() * 100000)}`,
-        ...form,
-      })
+      createPassengerBooking(
+        {
+          date,
+          adults,
+          departureTerminal,
+          arrivalTerminal,
+          selectedSeats,
+          bookedSeat,
+          vehicleId,
+          creator,
+          totalPrice,
+          bookingCode: `mem-${Math.ceil(Math.random() * 100000)}`,
+          ...form,
+        },
+        navigate
+      )
     );
   };
 
   // =====UPDATE/BOOK SEAT NUMBER
-  const handleClick = async () => {
+  const updateBookedSeatNumber = async () => {
     try {
       await Promise.all(
         selectedSeats.map((seatId) => {
@@ -247,29 +282,33 @@ const PassengerInfo = () => {
               </div>
 
               <div style={{ marginTop: "2rem" }}>
-                <Button
-                  disabled={
-                    !form.fullName ||
-                    !form.email ||
-                    !form.nextOfKinName ||
-                    !form.nextOfKinNumber ||
-                    !form.phoneNumber
-                      ? true
-                      : false
-                  }
-                  variant="contained"
-                  sx={{
-                    width: "100%",
-                    borderRadius: "0.8rem",
-                  }}
-                  onClick={() => {
-                    handleClick();
-                    handleSubmit();
-                    navigate("/bookinghistory");
-                  }}
-                >
-                  pay
-                </Button>
+                {user?.result._id ? (
+                  <>
+                    {!isFormPropEmpty ? (
+                      <PaystackButton
+                        {...componentProps}
+                        className="checkout-button-active"
+                      />
+                    ) : (
+                      <button className="checkout-button-disabled" disabled>
+                        fill out your details to proceed
+                      </button>
+                    )}
+                  </>
+                ) : (
+                  <Button
+                    variant="contained"
+                    sx={{
+                      width: "100%",
+                      borderRadius: "0.8rem",
+                    }}
+                    onClick={() => {
+                      navigate("/auth");
+                    }}
+                  >
+                    Sign In to Continue
+                  </Button>
+                )}
               </div>
             </Paper>
           </Grid>

@@ -7,11 +7,6 @@ import Earning from "../Earning/Earning";
 import { useLocation } from "react-router-dom";
 import Subscribe from "../Subscribe/Subscribe";
 
-// import { SpeedDial, SpeedDialIcon, SpeedDialAction } from "@mui/material";
-
-// import { Twitter, Facebook } from "@mui/icons-material";
-// import { Print, Share, } from "@mui/icons-material";
-
 const Home = () => {
   const location = useLocation();
 

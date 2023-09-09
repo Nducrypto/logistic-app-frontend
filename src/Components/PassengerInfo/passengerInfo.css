@@ -4,3 +4,28 @@
     justify-content: space-between;
     margin-top: 1rem;
 }
+
+.checkout-button-active {
+    background-color: orangered;
+    color: white;
+    border: none;
+    height: 40px;
+    padding: 10px 20px;
+    border-radius: 3px;
+    width: 100%;
+    cursor: pointer;
+    margin-top: 5px;
+  }
+.checkout-button-disabled {
+    background-color: orangered;
+    color: white;
+    border: none;
+    height: 40px;
+    padding: 10px 20px;
+    border-radius: 3px;
+    width: 100%;
+    cursor: wait;
+    opacity: 0.6;
+    margin-top: 5px;
+  }
+  

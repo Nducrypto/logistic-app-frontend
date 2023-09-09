@@ -1,25 +1,36 @@
 import { AppBar, Button } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Navbar.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import LogoutPrompt from "./LogoutPrompt";
 import { useStateContext } from "../../States/Contexts/ContextProvider";
 
 import { useAuthContext } from "../../States/Contexts/AuthContext";
 
 const Navbar = () => {
-  const { section2InView } = useStateContext();
+  const { section2InView, previousRoute, setPreviousRoute } = useStateContext();
 
   const [isOpen, setIsOpen] = useState(false);
   const [prompt, setPrompt] = useState(false);
 
   const { dispatch, user } = useAuthContext();
-
+  const location = useLocation();
   const navigate = useNavigate();
 
   const logout = () => {
     dispatch({ type: "LOGOUT" });
   };
+
+  const routeName = location.pathname;
+  useEffect(() => {
+    if (routeName !== "/auth") {
+      const newRoute = routeName;
+      console.log(newRoute);
+      sessionStorage.setItem("logistic-app-route", newRoute);
+      const getRoute = sessionStorage.getItem("logistic-app-route");
+      setPreviousRoute(getRoute);
+    }
+  }, [routeName, previousRoute, setPreviousRoute]);
 
   return (
     <AppBar

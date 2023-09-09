@@ -68,23 +68,9 @@ const App = () => {
           }
         />
 
-        <Route
-          path="/passenger"
-          element={
-            <UserProtectedRoute>
-              <PassengerInfo />
-            </UserProtectedRoute>
-          }
-        />
+        <Route path="/passenger" element={<PassengerInfo />} />
 
-        <Route
-          path="/select-bus"
-          element={
-            <UserProtectedRoute>
-              <SelectBus />
-            </UserProtectedRoute>
-          }
-        />
+        <Route path="/select-bus" element={<SelectBus />} />
 
         <Route
           path="/auth"

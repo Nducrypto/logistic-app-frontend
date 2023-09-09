@@ -29,18 +29,18 @@ const ReviewSeats = ({
 
   const handleContinue = () => {
     setForm(initialState);
-    navigate("/passenger", {
-      state: {
-        selectedSeats,
-        departureTerminal,
-        date,
-        arrivalTerminal,
-        adults,
-        bookedSeat,
-        vehicleId,
-        price: p.price,
-      },
-    });
+    const data = {
+      selectedSeats,
+      departureTerminal,
+      date,
+      arrivalTerminal,
+      adults,
+      bookedSeat,
+      vehicleId,
+      price: Number(p.price),
+    };
+    sessionStorage.setItem("booking-info", JSON.stringify(data));
+    navigate("/passenger");
   };
 
   const handlebackground = (e) => {

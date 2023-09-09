@@ -14,14 +14,13 @@ import { places, number } from "../../Objects/Constants/Categories";
 import { useStateContext } from "../../States/Contexts/ContextProvider";
 import { useNavigate } from "react-router-dom";
 import FormatDate from "../../Utils/FormatDate";
-import { useAuthContext } from "../../States/Contexts/AuthContext";
 import { useSelector } from "react-redux";
 import CheckStatus from "./CheckStatus";
 
 const Form = () => {
   const [checkCode, setCheckCode] = useState("");
   const [isClicked, setIsClicked] = useState(false);
-  console.log(checkCode);
+
   const {
     mode,
     setMode,
@@ -34,22 +33,10 @@ const Form = () => {
     adults,
     setAdults,
   } = useStateContext();
-  const { user } = useAuthContext();
   const { passenger } = useSelector((state) => state.passengers);
 
   const navigate = useNavigate();
 
-  // const minute = 1000 * 60;
-  // const hour = minute * 60;
-  // const day = hour * 24;
-  // const year = day * 365;
-
-  // // Divide Time with a year
-  // const d = new Date();
-  // let years = Math.round(d.getTime());
-  // console.log(years);
-
-  //  HANDLE SUBMIT
   const handleSubmit = () => {
     navigate(`/select-bus`, {
       state: {
@@ -61,47 +48,9 @@ const Form = () => {
     });
   };
 
-  // ====FILTEREDLOCATION======
   const filteredLocation = places.filter(
     (p) => p.location !== departureTerminal
   );
-  // const filteredLocation = ()=>{
-  //   let firstIndex=0
-  //   let lastIndex=places.length-1
-  //   while (firstIndex<=lastIndex) {
-  //     let middleindex=Math.floor(places.length/2)
-  //     if (places[middleindex]===departureTerminal) {
-
-  //     }
-  //   }
-  // }
-
-  // const filteredLocation = () => {
-  //   let firstIndex = 0;
-  //   let lastIndex = places.length - 1;
-  //   let result = [];
-
-  //   while (firstIndex <= lastIndex) {
-  //     let middleIndex = Math.floor((firstIndex + lastIndex) / 2);
-
-  //     if (places[middleIndex] === departureTerminal) {
-  //       // Item found at middleIndex, exclude it from the result array
-  //       result = [
-  //         ...places.slice(0, middleIndex),
-  //         ...places.slice(middleIndex + 1)
-  //       ];
-  //       break;
-  //     } else if (places[middleIndex] < departureTerminal) {
-  //       // Item is in the right half of the array
-  //       firstIndex = middleIndex + 1;
-  //     } else {
-  //       // Item is in the left half of the array
-  //       lastIndex = middleIndex - 1;
-  //     }
-  //   }
-
-  //   return result;
-  // };
 
   const checkStatus = passenger.filter(
     (item) => item.bookingCode === checkCode
@@ -400,7 +349,7 @@ const Form = () => {
               )}
 
               {/* PROCEED    BUTTON */}
-              {user?.result && mode !== "booking status" ? (
+              {mode !== "booking status" ? (
                 <Button
                   variant="contained"
                   fullWidth
@@ -416,31 +365,20 @@ const Form = () => {
                 >
                   Proceed
                 </Button>
-              ) : mode === "booking status" ? (
-                <Button
-                  variant="contained"
-                  fullWidth
-                  onClick={() => setIsClicked((prev) => !prev)}
-                  sx={{
-                    marginTop: ".5rem",
-                    padding: "-2rem",
-                  }}
-                >
-                  Check Status
-                </Button>
               ) : (
-                <Button
-                  variant="contained"
-                  fullWidth
-                  sx={{
-                    textTransform: "lowercase",
-                    marginTop: ".7rem",
-                    padding: "-2rem",
-                  }}
-                  onClick={() => navigate("/auth")}
-                >
-                  please sign in
-                </Button>
+                mode === "booking status" && (
+                  <Button
+                    variant="contained"
+                    fullWidth
+                    onClick={() => setIsClicked((prev) => !prev)}
+                    sx={{
+                      marginTop: ".5rem",
+                      padding: "-2rem",
+                    }}
+                  >
+                    Check Status
+                  </Button>
+                )
               )}
             </form>
           </Paper>
