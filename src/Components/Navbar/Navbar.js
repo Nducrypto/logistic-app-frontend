@@ -1,5 +1,5 @@
 import { AppBar, Button } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./Navbar.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import LogoutPrompt from "./LogoutPrompt";
@@ -25,7 +25,6 @@ const Navbar = () => {
   useEffect(() => {
     if (routeName !== "/auth") {
       const newRoute = routeName;
-      console.log(newRoute);
       sessionStorage.setItem("logistic-app-route", newRoute);
       const getRoute = sessionStorage.getItem("logistic-app-route");
       setPreviousRoute(getRoute);
@@ -47,9 +46,9 @@ const Navbar = () => {
       >
         <span className="nav-logo">
           {!prompt && (
-            <a href="/" style={{ textDecoration: "none", color: "white" }}>
+            <Link to="/" style={{ textDecoration: "none", color: "white" }}>
               MABENCH
-            </a>
+            </Link>
           )}
         </span>
         <div
