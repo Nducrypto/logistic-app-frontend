@@ -9,7 +9,12 @@
     align-items: center;
     justify-content: center;
   }
-
+.availabilty-container{
+  display: flex;
+  justify-content: space-around;
+  margin-top: .5rem;
+  padding: 0 0 0 1rem;
+}
 .seatContainer{
   align-items: center;
   padding: 1rem 3rem 1rem 3rem;
@@ -178,6 +183,7 @@ button{
         }
         .seat2{
           margin-top: 5rem;
+          margin-left: -1rem;
         }
 
         .seat3{
@@ -191,27 +197,30 @@ button{
 
         .seat5{
           margin-top: 1.5rem;
+          margin-left: -1rem;
+
         }
       
         .seat6{
           margin-left: 5rem;
-
         }
 
         .seat7{
-          margin-left: 15rem;
+          margin-left: 13.5rem;
 
         }
 
         .seat8{
           margin-top: 1.5rem;
+          margin-left: -1rem;
+
         }
       
         .seat9{
           margin-left: 5rem;
         }
         .seat10{
-          margin-left: 15rem;
+          margin-left: 13.5rem;
         }
 
 }

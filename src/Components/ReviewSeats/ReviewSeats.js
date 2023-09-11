@@ -138,23 +138,17 @@ const ReviewSeats = ({
           >
             <CloseIcon fontSize="small" />
           </IconButton>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-around",
-              marginTop: ".5rem",
-            }}
-          >
+          <div className="availabilty-container">
             <div>
-              <div className="seats-availabilties">Booked Seat</div>
+              <div className="seats-availabilties">Booked</div>
               <div className="booked-seat"></div>
             </div>
             <div>
-              <div className="seats-availabilties">Available Seat</div>
+              <div className="seats-availabilties">Available</div>
               <div className="available-seat"></div>
             </div>
             <div>
-              <div className="seats-availabilties">Selected Seat</div>
+              <div className="seats-availabilties">Selected</div>
 
               <div className="selected-seat"></div>
             </div>
