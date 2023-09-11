@@ -18,8 +18,8 @@ const BookingHistory = () => {
   return (
     <div>
       <div className="booking-history-container">
-        {filteredPassengers.map((p) => (
-          <div key={p._id}>
+        {filteredPassengers.map((passenger) => (
+          <div key={passenger._id}>
             <Paper
               sx={{
                 borderRadius: "2rem",
@@ -31,34 +31,38 @@ const BookingHistory = () => {
               elevation={12}
             >
               <div className="historyCon">
-                <div>{p.departureTerminal}</div>
-                <div> {p.arrivalTerminal}</div>
+                <div>{passenger.departureTerminal}</div>
+                <div> {passenger.arrivalTerminal}</div>
               </div>
 
               <div className="historyCon">
                 <div>Phone</div>
-                <div>{p.phoneNumber}</div>
+                <div>{passenger.phoneNumber}</div>
               </div>
               <div className="historyCon">
                 <div>Next Of Kin</div>
-                <div>{p.nextOfKinName}</div>
+                <div>{passenger.nextOfKinName}</div>
               </div>
               <div className="historyCon">
                 <div>Amount</div>
-                <div>&#8358;{Intl.NumberFormat().format(p.totalPrice)}</div>
+                <div>
+                  &#8358;{Intl.NumberFormat().format(passenger.totalPrice)}
+                </div>
               </div>
               <div className="historyCon">
                 <div>Booking Code</div>
-                <div> {p.bookingCode}</div>
+                <div> {passenger.bookingCode}</div>
               </div>
               <div className="historyCon">
                 <div>Date</div>
-                <div>{moment(p.date).format("dddd, MMM Do YYYY")}</div>
+                <div>{moment(passenger.date).format("dddd, MMM Do YYYY")}</div>
               </div>
 
               <div className="historyCon">
                 <div>seatNumber(s)</div>
-                <div style={{ display: "flex" }}>{p.bookedSeat.join(",")}</div>
+                <div style={{ display: "flex" }}>
+                  {passenger.bookedSeat.join(",")}
+                </div>
               </div>
             </Paper>
           </div>

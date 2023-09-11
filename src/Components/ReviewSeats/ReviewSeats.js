@@ -1,5 +1,5 @@
 import { AppBar, Card, IconButton } from "@mui/material";
-import React from "react";
+import React, { useCallback, useEffect, useMemo } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import "./ReviewSeats.css";
 import Error from "../Error/Error";
@@ -7,9 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useStateContext } from "../../States/Contexts/ContextProvider";
 
 const ReviewSeats = ({
-  p,
-  handleSeatSelection,
-  alreadyBooked,
+  bus,
   departureTerminal,
   date,
   arrivalTerminal,
@@ -25,9 +23,12 @@ const ReviewSeats = ({
     setError,
     selectedSeats,
     vehicleId,
+    setVehicleId,
+    setBookedSeat,
+    setSelectedSeats,
   } = useStateContext();
 
-  const handleContinue = () => {
+  function handleContinue() {
     setForm(initialState);
     const data = {
       selectedSeats,
@@ -37,21 +38,82 @@ const ReviewSeats = ({
       adults,
       bookedSeat,
       vehicleId,
-      price: Number(p.price),
+      price: Number(bus.price),
     };
     sessionStorage.setItem("booking-info", JSON.stringify(data));
     navigate("/passenger");
-  };
+  }
 
-  const handlebackground = (e) => {
-    const check = selectedSeats.find((p) => p === e);
+  function handleSeatSelection(seat) {
+    const { _id: busId } = bus;
+    const { _id: seatId, number } = seat;
 
+    setVehicleId(busId);
+    updateSeatIds(seatId);
+    updateSeatNumber(number);
+  }
+
+  function updateSeatIds(itemId) {
+    setSelectedSeats((previous) => {
+      const checkId = previous.indexOf(itemId);
+      const updatedArray = [...previous];
+      checkId !== -1
+        ? updatedArray.splice(checkId, 1)
+        : updatedArray.push(itemId);
+      return updatedArray;
+    });
+  }
+
+  function updateSeatNumber(seatNumber) {
+    setBookedSeat((previous) => {
+      const checkNumber = previous.indexOf(seatNumber);
+
+      return checkNumber !== -1
+        ? previous.filter((number) => parseInt(number) !== parseInt(seatNumber))
+        : [...previous, seatNumber];
+    });
+  }
+
+  const isSeatsGreaterThanAdults = useCallback(() => {
+    if (selectedSeats.length > Number(adults)) {
+      setError(true);
+      setSelectedSeats([]);
+      setBookedSeat([]);
+    }
+  }, [setError, selectedSeats, adults, setSelectedSeats, setBookedSeat]);
+
+  useEffect(() => {
+    isSeatsGreaterThanAdults();
+  }, [isSeatsGreaterThanAdults]);
+
+  const isSeatBookedOnDate = useMemo(() => {
+    function checkAlreadyBooked(seats) {
+      const dateTimestamp = new Date(date).getTime();
+      const unavailableDatesSet = new Set(
+        seats.unavailableDates.map((unavailableDate) =>
+          new Date(unavailableDate).getTime()
+        )
+      );
+      return unavailableDatesSet.has(dateTimestamp);
+    }
+
+    return checkAlreadyBooked;
+  }, [date]);
+
+  const getButtonStyle = (seat, isSeatBooked) => ({
+    backgroundColor: isSeatBooked ? "grey" : colorForSelectedSeat(seat._id),
+    cursor: isSeatBooked ? "not-allowed" : "pointer",
+  });
+
+  function colorForSelectedSeat(seatId) {
+    const check = selectedSeats.includes(seatId);
     if (check) {
       return "orange";
     } else {
       return "teal";
     }
-  };
+  }
+
   return (
     <AppBar sx={{ color: "black" }}>
       <div className="reserve">
@@ -98,201 +160,35 @@ const ReviewSeats = ({
             </div>
           </div>
           <div className="seatContainer">
-            {/* <div style={{ top: "0rem" }}>hhhhh</div> */}
-            {error && <Error setError={setError} setOpen={setOpen} />}
+            {error && <Error />}
             <article className="article">
               <img
-                style={{ height: "2.5rem" }}
+                className="steering-image"
+                loading="lazy"
                 alt=""
                 src="
                 https://cdn.iconscout.com/icon/premium/png-512-thumb/steering-wheel-42-819447.png?f=avif&w=256://cdn.iconscout.com/icon/free/png-512/steering-wheel-1442313-1218382.png?f=avif&w=256"
               />
-              <button
-                style={{
-                  backgroundColor: alreadyBooked(p.seatNumbers[0])
-                    ? "grey"
-                    : handlebackground(p.seatNumbers[0]._id),
-                  color: "white",
-                  width: "4rem",
-                  height: "1.5rem",
-                  cursor: alreadyBooked(p.seatNumbers[0])
-                    ? "not-allowed"
-                    : "pointer",
-                }}
-                onClick={() => handleSeatSelection(p.seatNumbers[0], p)}
-                disabled={alreadyBooked(p.seatNumbers[0])}
-              >
-                {p.seatNumbers[0].number}
-              </button>
             </article>
-            <article className="article-Two">
-              <button
-                style={{
-                  backgroundColor: alreadyBooked(p.seatNumbers[1])
-                    ? "grey"
-                    : handlebackground(p.seatNumbers[1]._id),
-                  color: "white",
+            <article>
+              {bus.seatNumbers.map((seat, index) => {
+                const isSeatBooked = isSeatBookedOnDate(seat);
 
-                  width: "4rem",
-                  height: "1.5rem",
-                  cursor: alreadyBooked(p.seatNumbers[1])
-                    ? "not-allowed"
-                    : "pointer",
-                }}
-                onClick={() => handleSeatSelection(p.seatNumbers[1], p)}
-                disabled={alreadyBooked(p.seatNumbers[1])}
-              >
-                {p.seatNumbers[1].number}
-              </button>
-
-              <button
-                style={{
-                  backgroundColor: alreadyBooked(p.seatNumbers[2])
-                    ? "grey"
-                    : handlebackground(p.seatNumbers[2]._id),
-                  color: "white",
-
-                  width: "4rem",
-                  height: "1.5rem",
-                  cursor: alreadyBooked(p.seatNumbers[2])
-                    ? "not-allowed"
-                    : "pointer",
-                }}
-                onClick={() => handleSeatSelection(p.seatNumbers[2], p)}
-                disabled={alreadyBooked(p.seatNumbers[2])}
-              >
-                {p.seatNumbers[2].number}
-              </button>
-              <button
-                style={{
-                  backgroundColor: alreadyBooked(p.seatNumbers[3])
-                    ? "grey"
-                    : handlebackground(p.seatNumbers[3]._id),
-                  color: "white",
-
-                  width: "4rem",
-                  height: "1.5rem",
-                  cursor: alreadyBooked(p.seatNumbers[3])
-                    ? "not-allowed"
-                    : "pointer",
-                }}
-                onClick={() => handleSeatSelection(p.seatNumbers[3], p)}
-                disabled={alreadyBooked(p.seatNumbers[3])}
-              >
-                {p.seatNumbers[3].number}
-              </button>
-            </article>
-            <article className="article">
-              <button
-                style={{
-                  backgroundColor: alreadyBooked(p.seatNumbers[4])
-                    ? "grey"
-                    : handlebackground(p.seatNumbers[4]._id),
-                  color: "white",
-
-                  width: "4rem",
-                  height: "1.5rem",
-                  cursor: alreadyBooked(p.seatNumbers[4])
-                    ? "not-allowed"
-                    : "pointer",
-                }}
-                onClick={() => handleSeatSelection(p.seatNumbers[4], p)}
-                disabled={alreadyBooked(p.seatNumbers[4])}
-              >
-                {p.seatNumbers[4].number}
-              </button>
-              <button
-                style={{
-                  backgroundColor: alreadyBooked(p.seatNumbers[5])
-                    ? "grey"
-                    : handlebackground(p.seatNumbers[5]._id),
-                  color: "white",
-
-                  width: "4rem",
-                  height: "1.5rem",
-                  cursor: alreadyBooked(p.seatNumbers[5])
-                    ? "not-allowed"
-                    : "pointer",
-                }}
-                onClick={() => handleSeatSelection(p.seatNumbers[5], p)}
-                disabled={alreadyBooked(p.seatNumbers[5])}
-              >
-                {p.seatNumbers[5].number}
-              </button>
-              <button
-                style={{
-                  backgroundColor: alreadyBooked(p.seatNumbers[6])
-                    ? "grey"
-                    : handlebackground(p.seatNumbers[6]._id),
-                  color: "white",
-
-                  width: "4rem",
-                  height: "1.5rem",
-                  cursor: alreadyBooked(p.seatNumbers[6])
-                    ? "not-allowed"
-                    : "pointer",
-                }}
-                onClick={() => handleSeatSelection(p.seatNumbers[6], p)}
-                disabled={alreadyBooked(p.seatNumbers[6])}
-              >
-                {p.seatNumbers[6].number}
-              </button>
-            </article>
-            <article className="article">
-              <button
-                style={{
-                  backgroundColor: alreadyBooked(p.seatNumbers[7])
-                    ? "grey"
-                    : handlebackground(p.seatNumbers[7]._id),
-                  color: "white",
-
-                  width: "4rem",
-                  height: "1.5rem",
-                  cursor: alreadyBooked(p.seatNumbers[7])
-                    ? "not-allowed"
-                    : "pointer",
-                }}
-                onClick={() => handleSeatSelection(p.seatNumbers[7], p)}
-                disabled={alreadyBooked(p.seatNumbers[7])}
-              >
-                {p.seatNumbers[7].number}
-              </button>
-              <button
-                style={{
-                  backgroundColor: alreadyBooked(p.seatNumbers[8])
-                    ? "grey"
-                    : handlebackground(p.seatNumbers[8]._id),
-                  color: "white",
-
-                  width: "4rem",
-                  height: "1.5rem",
-                  cursor: alreadyBooked(p.seatNumbers[8])
-                    ? "not-allowed"
-                    : "pointer",
-                }}
-                onClick={() => handleSeatSelection(p.seatNumbers[8], p)}
-                disabled={alreadyBooked(p.seatNumbers[8])}
-              >
-                {p.seatNumbers[8].number}
-              </button>
-              <button
-                style={{
-                  backgroundColor: alreadyBooked(p.seatNumbers[9])
-                    ? "grey"
-                    : handlebackground(p.seatNumbers[9]._id),
-                  color: "white",
-
-                  width: "4rem",
-                  height: "1.5rem",
-                  cursor: alreadyBooked(p.seatNumbers[9])
-                    ? "not-allowed"
-                    : "pointer",
-                }}
-                onClick={() => handleSeatSelection(p.seatNumbers[9], p)}
-                disabled={alreadyBooked(p.seatNumbers[9])}
-              >
-                {p.seatNumbers[9].number}
-              </button>
+                return (
+                  <div key={seat._id}>
+                    <button
+                      style={getButtonStyle(seat, isSeatBooked)}
+                      onClick={() => {
+                        handleSeatSelection(seat);
+                      }}
+                      disabled={isSeatBooked}
+                      className={`seat${index + 1}`}
+                    >
+                      {seat.number}
+                    </button>
+                  </div>
+                );
+              })}
             </article>
 
             <div className="bookContainer">

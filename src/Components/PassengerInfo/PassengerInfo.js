@@ -13,10 +13,10 @@ import "./passengerInfo.css";
 
 const PassengerInfo = () => {
   const { form, setForm } = useStateContext();
+  const { paymentFailure, setPaymentFailure } = useStateContext(false);
   const getBookingInfo = JSON.parse(sessionStorage.getItem("booking-info"));
   const {
     price,
-    vehicleId,
     bookedSeat,
     arrivalTerminal,
     departureTerminal,
@@ -39,9 +39,11 @@ const PassengerInfo = () => {
     updateBookedSeatNumber();
   }
 
-  function handlePaystackCloseAction() {}
+  function handlePaystackCloseAction() {
+    setPaymentFailure(true);
+  }
 
-  let totalPrice = price * adults;
+  const totalPrice = price * adults;
 
   const paystackConfig = {
     reference: new Date().getTime(),
@@ -67,13 +69,7 @@ const PassengerInfo = () => {
     dispatch(
       createPassengerBooking(
         {
-          date,
-          adults,
-          departureTerminal,
-          arrivalTerminal,
-          selectedSeats,
-          bookedSeat,
-          vehicleId,
+          ...getBookingInfo,
           creator,
           totalPrice,
           bookingCode: `mem-${Math.ceil(Math.random() * 100000)}`,
@@ -100,8 +96,12 @@ const PassengerInfo = () => {
     }
   };
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.id]: e.target.value });
+  const handleChange = (event) => {
+    const { name, value } = event;
+    setForm((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   return (
@@ -112,6 +112,13 @@ const PassengerInfo = () => {
         >
           Hi Guest, we just need few more details about you
         </Typography>
+        {paymentFailure && (
+          <Typography
+            sx={{ fontWeight: "600", textAlign: "center", fontSize: "1.3rem" }}
+          >
+            Opps! Unable to complete Transaction
+          </Typography>
+        )}
 
         <Grid container alignItems="center" justifyContent="center">
           <Grid item xs={11} md={7} sm={8} lg={7} sx={{ marginTop: "1rem" }}>

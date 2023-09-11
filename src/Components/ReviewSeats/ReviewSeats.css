@@ -17,16 +17,97 @@
   }
 
   .article{
-    display: flex;
-    justify-content: space-between;
     margin-top: 2.5rem;
   }
 
-  .article-Two{
-    display: flex;
-    margin-top: 2.5rem;
-    gap: 3rem;
+  .steering-image{
+    height: 2.5rem;
   }
+  .seat1{
+    margin-left: 22rem;
+    display: block;
+    margin-top: -2.5rem;
+    color: white;
+    width: 4rem;
+    height: 1.5rem
+  }
+
+  .seat2{
+    margin-top: 5rem;
+    display: block;
+    top: -4rem;
+    color: white;
+    width: 4rem;
+    height: 1.5rem
+  }
+
+  .seat3{
+    margin-left: 5rem;
+    display: block;
+    margin-top: -1.5rem;
+    color: white;
+    width: 4rem;
+    height: 1.5rem
+  }
+
+  .seat4{
+    margin-left: 12rem;
+    display: block;
+    margin-top: -1.5rem;
+    color: white;
+    width: 4rem;
+   height: 1.5rem
+  }
+  .seat5{
+    margin-top: 1.5rem;
+    color: white;
+    width: 4rem;
+    height: 1.5rem
+  }
+
+  .seat6{
+    margin-left: 5rem;
+    display: block;
+    margin-top: -1.5rem;
+    color: white;
+    width: 4rem;
+    height: 1.5rem
+  }
+  .seat7{
+    margin-left: 22rem;
+    display: block;
+    margin-top: -1.5rem;
+    color: white;
+
+    width: 4rem;
+    height: 1.5rem
+    
+  }
+  .seat8{
+    margin-top: 1.5rem;
+    color: white;
+    width: 4rem;
+    height: 1.5rem
+  }
+
+  .seat9{
+    margin-left: 5rem;
+    display: block;
+    margin-top: -1.5rem;
+    color: white;
+    width: 4rem;
+    height: 1.5rem
+  }
+  .seat10{
+    margin-left: 22rem;
+    display: block;
+    margin-top: -1.5rem;
+    color: white;
+    width: 4rem;
+    height: 1.5rem
+  }
+
+
 .bookContainer{
   display: flex;
   justify-content: space-between;
@@ -66,26 +147,84 @@ border-radius: 1rem;
 button{
   border-radius: 1rem;
 }
-  @media screen and (max-width: 810px) {
+
+@media screen and (max-width: 810px) {
+   
+  .seatContainer{
+    padding: 0rem 1.5rem 0rem 1.5rem;
+ 
+      }
+      .article-Two{
+       
+        gap: 2.5rem;
+      }
+}
+
+
+  @media screen and (max-width: 768px) {
    
     .seatContainer{
       padding: 0rem 1.5rem 0rem 1.5rem;
    
         }
+      
         .article-Two{
          
           gap: 2.5rem;
         }
+
+        .seat1{
+          margin-left: 13rem;
+        }
+        .seat2{
+          margin-top: 5rem;
+        }
+
+        .seat3{
+          margin-left: 5rem;
+        }
+
+        .seat4{
+          margin-left: 10rem;
+       
+        }
+
+        .seat5{
+          margin-top: 1.5rem;
+        }
+      
+        .seat6{
+          margin-left: 5rem;
+
+        }
+
+        .seat7{
+          margin-left: 15rem;
+
+        }
+
+        .seat8{
+          margin-top: 1.5rem;
+        }
+      
+        .seat9{
+          margin-left: 5rem;
+        }
+        .seat10{
+          margin-left: 15rem;
+        }
+
 }
-  @media screen and (max-width: 650px) {
+
+  /* @media screen and (max-width: 650px) {
     
     .seatContainer{
       padding: 0rem 1.5rem 0rem 1.5rem;
    
         }
       
-}
-  @media screen and (max-width: 375px) {
+} */
+  /* @media screen and (max-width: 375px) {
   
     .seats-availabilties{
       font-size: .9rem;
@@ -98,4 +237,4 @@ button{
         .article-Two{
           gap: .5rem;
         }
-}
+} */

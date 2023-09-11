@@ -3,12 +3,9 @@ import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
 
 import "./Error.css";
-
-const Error = ({
-  setOpen,
-
-  setError,
-}) => {
+import { useStateContext } from "../../States/Contexts/ContextProvider";
+const Error = () => {
+  const { setOpen, setError } = useStateContext();
   return (
     <div className="errorcard">
       <Card

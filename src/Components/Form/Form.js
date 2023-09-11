@@ -216,7 +216,7 @@ const Form = () => {
                   <div>
                     <TextField
                       sx={{ marginTop: "2rem" }}
-                      onChange={(e) => setDate(FormatDate(e.target.value))}
+                      onChange={(e) => setDate(e.target.value)}
                       value={date}
                       type="date"
                       inputProps={{

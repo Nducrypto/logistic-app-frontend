@@ -17,21 +17,11 @@ import ReviewSeats from "../ReviewSeats/ReviewSeats";
 import Subscribe from "../Subscribe/Subscribe.js";
 
 const SelectBus = () => {
-  const {
-    open,
-    setOpen,
-    setError,
-    selectedSeats,
-    setSelectedSeats,
-    setBookedSeat,
-    setVehicleId,
-  } = useStateContext();
+  const { open, setOpen } = useStateContext();
 
   const location = useLocation();
-  const departureTerminal = location.state.departureTerminal;
-  const arrivalTerminal = location.state.arrivalTerminal;
-  const adults = location.state.adults;
-  const date = location.state.date;
+
+  const { date, adults, departureTerminal, arrivalTerminal } = location.state;
   const { data, loading } = useFetch(
     `/page?departureTerminal=${departureTerminal}&arrivalTerminal=${arrivalTerminal}`
   );
@@ -52,48 +42,6 @@ const SelectBus = () => {
       allSeatNumbers.length - allUnavailableDates.length;
     return availableSeatCount;
   };
-
-  const alreadyBooked = (t) => {
-    const isBooked = t.unavailableDates.some((p) => p.includes(date));
-
-    return isBooked;
-  };
-
-  // select desired seat
-  const handleSeatSelection = (item, locationId) => {
-    const { _id: locationIdValue } = locationId;
-    const { _id: itemId, number } = item;
-
-    setVehicleId(locationIdValue);
-    updateSeatIds(itemId);
-    updateSeatNumber(number);
-  };
-
-  const updateSeatIds = (itemId) => {
-    setSelectedSeats((prevSelectedSeats) => {
-      const checkId = prevSelectedSeats.indexOf(itemId);
-      const updatedArray = [...prevSelectedSeats];
-      checkId !== -1
-        ? updatedArray.splice(checkId, 1)
-        : updatedArray.push(itemId);
-      return updatedArray;
-    });
-  };
-
-  const updateSeatNumber = (seatNumber) => {
-    setBookedSeat((prevBookedSeats) => {
-      const checkNumber = prevBookedSeats.some((p) => p.seatId === seatNumber);
-      return checkNumber
-        ? prevBookedSeats.filter((p) => p.seatId !== seatNumber)
-        : [...prevBookedSeats, seatNumber];
-    });
-  };
-
-  if (selectedSeats.length > Number(adults)) {
-    setError(true);
-    setSelectedSeats([]);
-    setBookedSeat([]);
-  }
 
   return (
     <>
@@ -120,9 +68,9 @@ const SelectBus = () => {
           ) : loading ? (
             <CircularProgress />
           ) : (
-            data.map((p) => (
+            data.map((bus) => (
               <Card
-                key={p._id}
+                key={bus._id}
                 sx={{
                   width: { xs: "85%", md: "95%" },
                   display: { md: "flex" },
@@ -154,8 +102,8 @@ const SelectBus = () => {
                       color="text.secondary"
                       sx={{ marginTop: { md: 0.5, xs: 0.5 } }}
                     >
-                      departure: {p.departureTerminal} . Arrival:
-                      {p.arrivalTerminal}
+                      departure: {bus.departureTerminal} . Arrival:
+                      {bus.arrivalTerminal}
                     </Typography>
                     <Typography paragraph>
                       {moment(date).format("MMMM Do YYYY")}
@@ -179,7 +127,7 @@ const SelectBus = () => {
                         marginLeft: { md: "12rem", xs: "5rem" },
                       }}
                     >
-                      &#8358; {Intl.NumberFormat().format(p.price)}
+                      &#8358; {Intl.NumberFormat().format(bus.price)}
                     </Typography>
                     <Button
                       variant="contained"
@@ -198,9 +146,7 @@ const SelectBus = () => {
                 </Grid>
                 {open ? (
                   <ReviewSeats
-                    p={p}
-                    handleSeatSelection={handleSeatSelection}
-                    alreadyBooked={alreadyBooked}
+                    bus={bus}
                     departureTerminal={departureTerminal}
                     arrivalTerminal={arrivalTerminal}
                     date={date}
